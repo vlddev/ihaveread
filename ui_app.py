@@ -6,6 +6,7 @@ import datetime
 import const
 import sqlite_utils
 import ui_add_book
+import ui_edit_book
 
 
 # see : https://github.com/PySimpleGUI/PySimpleGUI/blob/master/DemoPrograms/Demo_Tabs.py
@@ -57,7 +58,8 @@ search_layout = [
         justification='left',
         num_rows=20,
         # max_col_width=160,
-        key=const.KEY_BOOK_LIST
+        key=const.KEY_BOOK_LIST,
+        right_click_menu=['unused', ['Edit book']]
     )],
     [sg.Button("Add book")]
 ]
@@ -85,7 +87,6 @@ author_layout = [
             ], vertical_alignment='top')
     ]
 ]
-
 
 book_layout = []
 
@@ -147,7 +148,12 @@ while True:
         editAuthor(con, 'author')
 
     if event == "Add book":
-        ui_add_book.editBook(con, 'book')
+        ui_add_book.addBook(con, 'book')
+
+    if event == "Edit book":
+        rowNum = values[const.KEY_BOOK_LIST][0]
+        bookId = window[const.KEY_BOOK_LIST].Values[rowNum][0]
+        ui_edit_book.editBook(con, bookId)
 
     if event == "Add synonym":
         # get selected author

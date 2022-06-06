@@ -121,7 +121,7 @@ def insertBook_err(con, title, lang, publish_date, genre, note):
 def insertBookNames(con, bookId, names):
     cur = con.cursor()
     for name in names:
-        cur.execute('INSERT INTO book_names(book_id, name, lang) VALUES (?,?)', (bookId, name[0], name[1]))
+        cur.execute('INSERT INTO book_names(book_id, name, lang) VALUES (?,?,?)', (bookId, name[0], name[1]))
 
 def insertBookReaded(con, bookId, lang_read, date_read, medium, score):
     cur = con.cursor()
