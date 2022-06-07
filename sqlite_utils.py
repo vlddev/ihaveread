@@ -94,11 +94,28 @@ def getReadedBooksByYear(con, year):
 def getBook(con, bookId):
     ret = None
     cur = con.cursor()
-    cur.execute('SELECT b.id, b.title, b.ressource, b.lang FROM book b WHERE b.id = ?', (bookId,))
+    cur.execute('SELECT b.id, b.title, b.publish_date, b.lang, b.genre, b.note FROM book b WHERE b.id = ?', (bookId,))
     data = cur.fetchone()
     if data != None and len(data) > 0:
         ret = data
     return ret
+
+def getReadedBook(con, bookId):
+    ret = None
+    cur = con.cursor()
+    cur.execute('SELECT b.book_id, b.date_read, b.lang_read, b.medium, b.score FROM book_readed b WHERE b.book_id = ?', (bookId,))
+    data = cur.fetchone()
+    if data != None and len(data) > 0:
+        ret = data
+    return ret
+
+def getBookAuthors(con, bookId):
+    cur = con.cursor()
+    cur.execute("""SELECT a.id, a.name
+            FROM author a, author_book ab
+            WHERE ab.author_id = a.id and ab.book_id = ?""", (bookId,))
+    data = cur.fetchall()
+    return data
 
 def insertBook(con, title, lang, publish_date, genre, note):
     cur = con.cursor()
@@ -117,6 +134,14 @@ def insertBook_err(con, title, lang, publish_date, genre, note):
         print ("Error %s:" % e.args[0])
         print("For {0}".format(title))
         con.rollback()
+
+def getBookNames(con, authorId):
+    cur = con.cursor()
+    cur.execute("""SELECT name, lang
+            FROM book_names
+            WHERE book_id = ?""", (authorId,))
+    data = cur.fetchall()
+    return data
 
 def insertBookNames(con, bookId, names):
     cur = con.cursor()
