@@ -123,6 +123,11 @@ def insertBook(con, title, lang, publish_date, genre, note):
     ret = cur.lastrowid
     return ret
 
+def updateBook(con, bookId, title, lang, publish_date, genre, note):
+    cur = con.cursor()
+    cur.execute('UPDATE book SET title = ?, lang = ?, publish_date = ?, genre = ?, note = ? WHERE id = ?', 
+        (title, lang, publish_date, genre, note, bookId))
+
 def insertBook_err(con, title, lang, publish_date, genre, note):
     try:
         cur = con.cursor()
@@ -152,6 +157,11 @@ def insertBookReaded(con, bookId, lang_read, date_read, medium, score):
     cur = con.cursor()
     cur.execute('INSERT INTO book_readed(book_id, lang_read, date_read, medium, score) VALUES (?,?,?,?,?)',
         (bookId, lang_read, date_read, medium, score))
+
+def updateBookReaded(con, bookId, lang_read, date_read, medium, score):
+    cur = con.cursor()
+    cur.execute('UPDATE book_readed SET lang_read = ?, date_read = ?, medium = ?, score = ? WHERE book_id = ?', 
+        (lang_read, date_read, medium, score, bookId))
 
 def insertBookAuthors(con, bookId, authorIds):
     cur = con.cursor()

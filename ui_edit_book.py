@@ -51,8 +51,20 @@ def editBook(con, bookId):
         if event == 'Cancel' or event == "Exit" or event == sg.WIN_CLOSED:
             break
         if event == 'Change book':
-            pass
+            try:
+                sqlite_utils.updateBook(con, bookId, values[const.KEY_BOOK_TITLE].strip(), values[const.KEY_BOOK_LANG].strip(),
+                    values[const.KEY_BOOK_PUBL_DATE].strip(), values[const.KEY_BOOK_GENRE].strip(), values[const.KEY_BOOK_NOTE].strip() )
+                con.commit()
+            except Exception as e:
+                print ("Error %s:" % e.args[0])
+                con.rollback()
         if event == 'Change read book':
-            pass
+            try:
+                sqlite_utils.updateBookReaded(con, bookId, values[const.KEY_READ_BOOK_LANG].strip(), values[const.KEY_BOOK_READ_DATE].strip(),
+                    values[const.KEY_BOOK_MEDIUM].strip(), values[const.KEY_BOOK_SCORE].strip() )
+                con.commit()
+            except Exception as e:
+                print ("Error %s:" % e.args[0])
+                con.rollback()
 
     winEditBook.close()
