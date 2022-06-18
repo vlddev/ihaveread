@@ -57,9 +57,11 @@ def deleteAuthorName(con, authorId, name):
 
 def getReadedBooksByAuthor(con, author):
     cur = con.cursor()
-    cur.execute("""select br.book_id, br.date_read, a.name, b.title, br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
-        from book_readed br, book b, author_book ab, author a 
-        where 
+    cur.execute("""SELECT br.book_id, br.date_read, a.name,
+            ifnull((select bn.name from book_names bn where bn.book_id = b.id and bn.lang = br.lang_read), b.title) title,
+            br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
+        FROM book_readed br, book b, author_book ab, author a 
+        WHERE 
         br.book_id = b.id
         and br.book_id = ab.book_id
         and ab.author_id = a.id
@@ -69,7 +71,9 @@ def getReadedBooksByAuthor(con, author):
 
 def getReadedBooksByTitle(con, title):
     cur = con.cursor()
-    cur.execute("""select br.book_id, br.date_read, a.name, b.title, br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
+    cur.execute("""SELECT br.book_id, br.date_read, a.name,
+            ifnull((select bn.name from book_names bn where bn.book_id = b.id and bn.lang = br.lang_read), b.title) title,
+            br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
         from book_readed br, book b, author_book ab, author a 
         where 
         br.book_id = b.id
@@ -81,7 +85,9 @@ def getReadedBooksByTitle(con, title):
 
 def getReadedBooksByYear(con, year):
     cur = con.cursor()
-    cur.execute("""select br.book_id, br.date_read, a.name, b.title, br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
+    cur.execute("""SELECT br.book_id, br.date_read, a.name,
+            ifnull((select bn.name from book_names bn where bn.book_id = b.id and bn.lang = br.lang_read), b.title) title,
+            br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
         from book_readed br, book b, author_book ab, author a 
         where 
         br.book_id = b.id
