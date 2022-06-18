@@ -19,7 +19,7 @@ def addBook(con, book):
         [sg.Text('Orig lang', (12, 1)), sg.In(size=(10, 1), key=const.KEY_ORIG_BOOK_LANG)],
         [sg.Text('Publish date', (12, 1)), sg.In(size=(10, 1), key=const.KEY_BOOK_PUBL_DATE)],
         [sg.Text('Genre', (12, 1)), sg.In(size=(60, 1), key=const.KEY_BOOK_GENRE)],
-        [sg.Text('Note', (12, 1)), sg.In(size=(60, 3), key=const.KEY_BOOK_NOTE)],
+        [sg.Text('Note', (12, 1)), sg.Multiline(size=(60, 3), key=const.KEY_BOOK_NOTE)],
         [sg.Text('Read date', (12, 1)), sg.In(size=(10, 1), default_text=datetime.datetime.today().strftime('%Y-%m-%d'), key=const.KEY_BOOK_READ_DATE)],
         [sg.Text('Medium', (12, 1)), sg.In(size=(10, 1), key=const.KEY_BOOK_MEDIUM)],
         [sg.Text('Score', (12, 1)), sg.In(size=(10, 1), key=const.KEY_BOOK_SCORE)],
