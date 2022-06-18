@@ -23,7 +23,7 @@ def editBook(con, bookId):
         [sg.Text('Lang', (12, 1)), sg.In(size=(10, 1), default_text=book[3], key=const.KEY_BOOK_LANG)],
         [sg.Text('Publish date', (12, 1)), sg.In(size=(10, 1), default_text=book[2], key=const.KEY_BOOK_PUBL_DATE)],
         [sg.Text('Genre', (12, 1)), sg.In(size=(60, 1), default_text=book[4], key=const.KEY_BOOK_GENRE)],
-        [sg.Text('Note', (12, 1)), sg.In(size=(60, 3), default_text=book[5], key=const.KEY_BOOK_NOTE)],
+        [sg.Text('Note', (12, 1)), sg.Multiline(size=(60, 3), default_text=book[5], key=const.KEY_BOOK_NOTE)],
         [sg.Button("Change book")],
         [],
         [sg.Listbox(
@@ -52,6 +52,12 @@ def editBook(con, bookId):
             break
         if event == 'Change book':
             try:
+                bookNameList = list(zip(*bookNames))[0]
+                langList = list(zip(*bookNames))[1]
+                newName = values[const.KEY_BOOK_TITLE].strip()
+                newLang = values[const.KEY_BOOK_LANG].strip()
+                if newName not in bookNameList and newLang not in langList:
+                    sqlite_utils.insertBookNames(con, bookId, [[newName, newLang],])
                 sqlite_utils.updateBook(con, bookId, values[const.KEY_BOOK_TITLE].strip(), values[const.KEY_BOOK_LANG].strip(),
                     values[const.KEY_BOOK_PUBL_DATE].strip(), values[const.KEY_BOOK_GENRE].strip(), values[const.KEY_BOOK_NOTE].strip() )
                 con.commit()
