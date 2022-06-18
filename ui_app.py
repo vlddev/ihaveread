@@ -61,6 +61,7 @@ search_layout = [
         key=const.KEY_BOOK_LIST,
         right_click_menu=['unused', ['Edit book']]
     )],
+    [sg.Text('', key=const.KEY_BOOK_LIST_SIZE)],
     [sg.Button("Add book")]
 ]
 
@@ -112,16 +113,19 @@ while True:
         toFind = values[const.KEY_SEARCH_BOOK]
         list = sqlite_utils.getReadedBooksByAuthor(con, toFind)
         window[const.KEY_BOOK_LIST].update(list)
+        window[const.KEY_BOOK_LIST_SIZE].update(str(len(list))+" books")
 
     if event == "by title":
         toFind = values[const.KEY_SEARCH_BOOK]
         list = sqlite_utils.getReadedBooksByTitle(con, toFind)
         window[const.KEY_BOOK_LIST].update(list)
+        window[const.KEY_BOOK_LIST_SIZE].update(str(len(list))+" books")
 
     if event == "by year":
         toFind = values[const.KEY_SEARCH_BOOK]
         list = sqlite_utils.getReadedBooksByYear(con, toFind)
         window[const.KEY_BOOK_LIST].update(list)
+        window[const.KEY_BOOK_LIST_SIZE].update(str(len(list))+" books")
 
     if event == "Find author":
         toFind = values[const.KEY_SEARCH_AUTHOR]
@@ -180,6 +184,8 @@ while True:
             except Exception as e:
                 print ("Error %s:" % e.args[0])
                 con.rollback()
+        list = sqlite_utils.getAuthorNames(con, authorId)
+        window[const.KEY_AUTHOR_SYNONYMS].update(list)
 
     if event == "Delete synonym":
         if updateAuthorSynPosible:
@@ -189,7 +195,9 @@ while True:
             except Exception as e:
                 print ("Error %s:" % e.args[0])
                 con.rollback()
-
+        list = sqlite_utils.getAuthorNames(con, authorId)
+        window[const.KEY_AUTHOR_SYNONYMS].update(list)
+    
 window.close()
 if con:
     con.close()
