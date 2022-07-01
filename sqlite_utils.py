@@ -57,7 +57,8 @@ def deleteAuthorName(con, authorId, name):
 
 def getReadedBooksByAuthor(con, author):
     cur = con.cursor()
-    cur.execute("""SELECT br.book_id, br.date_read, a.name,
+    cur.execute("""SELECT distinct br.book_id, br.date_read, 
+            (select group_concat(a.name, '; ') from author a, author_book ab where ab.book_id = b.id and ab.author_id = a.id) authors,
             ifnull((select bn.name from book_names bn where bn.book_id = b.id and bn.lang = br.lang_read), b.title) title,
             br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
         FROM book_readed br, book b, author_book ab, author a 
@@ -71,7 +72,8 @@ def getReadedBooksByAuthor(con, author):
 
 def getReadedBooksByTitle(con, title):
     cur = con.cursor()
-    cur.execute("""SELECT br.book_id, br.date_read, a.name,
+    cur.execute("""SELECT distinct br.book_id, br.date_read, 
+            (select group_concat(a.name, '; ') from author a, author_book ab where ab.book_id = b.id and ab.author_id = a.id) authors,
             ifnull((select bn.name from book_names bn where bn.book_id = b.id and bn.lang = br.lang_read), b.title) title,
             br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
         from book_readed br, book b, author_book ab, author a 
@@ -85,7 +87,8 @@ def getReadedBooksByTitle(con, title):
 
 def getReadedBooksByYear(con, year):
     cur = con.cursor()
-    cur.execute("""SELECT br.book_id, br.date_read, a.name,
+    cur.execute("""SELECT distinct br.book_id, br.date_read, 
+            (select group_concat(a.name, '; ') from author a, author_book ab where ab.book_id = b.id and ab.author_id = a.id) authors,
             ifnull((select bn.name from book_names bn where bn.book_id = b.id and bn.lang = br.lang_read), b.title) title,
             br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
         from book_readed br, book b, author_book ab, author a 
@@ -106,11 +109,11 @@ def getBook(con, bookId):
         ret = data
     return ret
 
-def getReadedBook(con, bookId):
+def getReadedBooks(con, bookId):
     ret = None
     cur = con.cursor()
     cur.execute('SELECT b.book_id, b.date_read, b.lang_read, b.medium, b.score FROM book_readed b WHERE b.book_id = ?', (bookId,))
-    data = cur.fetchone()
+    data = cur.fetchall()
     if data != None and len(data) > 0:
         ret = data
     return ret
@@ -166,10 +169,14 @@ def insertBookReaded(con, bookId, lang_read, date_read, medium, score):
 
 def updateBookReaded(con, bookId, lang_read, date_read, medium, score):
     cur = con.cursor()
-    cur.execute('UPDATE book_readed SET lang_read = ?, date_read = ?, medium = ?, score = ? WHERE book_id = ?', 
-        (lang_read, date_read, medium, score, bookId))
+    cur.execute('UPDATE book_readed SET lang_read = ?, date_read = ?, medium = ?, score = ? WHERE book_id = ? and lang_read = ?', 
+        (lang_read, date_read, medium, score, bookId, lang_read))
 
 def insertBookAuthors(con, bookId, authorIds):
     cur = con.cursor()
     for authorId in authorIds:
         cur.execute('INSERT INTO author_book(author_id, book_id) VALUES (?,?)', (authorId, bookId))
+
+def deleteBookAuthors(con, bookId):
+    cur = con.cursor()
+    cur.execute('DELETE FROM author_book WHERE book_id = ?', (bookId, ))
