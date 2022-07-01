@@ -12,6 +12,11 @@ import ui_edit_book
 # see : https://github.com/PySimpleGUI/PySimpleGUI/blob/master/DemoPrograms/Demo_Tabs.py
 # https://pysimplegui.readthedocs.io/
 
+# sg.theme_previewer()
+# sg.theme('Light Gray')
+# sg.theme('DarkGray4')
+
+
 def ifnull(var, val):
     if var is None:
         return val
@@ -59,7 +64,7 @@ search_layout = [
         num_rows=20,
         # max_col_width=160,
         key=const.KEY_BOOK_LIST,
-        right_click_menu=['unused', ['Edit book']]
+        right_click_menu=['unused', ['Edit book', 'Copy to clipboard']]
     )],
     [sg.Text('', key=const.KEY_BOOK_LIST_SIZE)],
     [sg.Button("Add book")]
@@ -155,9 +160,16 @@ while True:
         ui_add_book.addBook(con, 'book')
 
     if event == "Edit book":
-        rowNum = values[const.KEY_BOOK_LIST][0]
-        bookId = window[const.KEY_BOOK_LIST].Values[rowNum][0]
-        ui_edit_book.editBook(con, bookId)
+        if len(values[const.KEY_BOOK_LIST]) > 0:
+            rowNum = values[const.KEY_BOOK_LIST][0]
+            bookId = window[const.KEY_BOOK_LIST].Values[rowNum][0]
+            ui_edit_book.editBook(con, bookId)
+
+    if event == "Copy to clipboard":
+        dataRows = []
+        for row in window[const.KEY_BOOK_LIST].Values:
+            dataRows.append("\t".join(map(str,row)))
+        sg.clipboard_set("\n".join(dataRows))
 
     if event == "Add synonym":
         # get selected author
