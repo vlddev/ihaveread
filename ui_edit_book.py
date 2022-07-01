@@ -9,7 +9,7 @@ import sqlite_utils
 def editBook(con, bookId):
     #  populate fields
     book = sqlite_utils.getBook(con, bookId)
-    readedBook = sqlite_utils.getReadedBook(con, bookId)
+    readedBooks = sqlite_utils.getReadedBooks(con, bookId)
     authors = sqlite_utils.getBookAuthors(con, bookId)
     bookNames = sqlite_utils.getBookNames(con, bookId)
 
@@ -32,10 +32,16 @@ def editBook(con, bookId):
         )],
         [sg.Button("Add name"), sg.Button("Edit name"), sg.Button("Delete name")],
         [],
-        [sg.Text('Read lang', (12, 1)), sg.In(size=(10, 1), default_text=readedBook[2], key=const.KEY_READ_BOOK_LANG)],
-        [sg.Text('Read date', (12, 1)), sg.In(size=(10, 1), default_text=readedBook[1], key=const.KEY_BOOK_READ_DATE)],
-        [sg.Text('Medium', (12, 1)), sg.In(size=(10, 1), default_text=readedBook[3], key=const.KEY_BOOK_MEDIUM)],
-        [sg.Text('Score', (12, 1)), sg.In(size=(10, 1), default_text=readedBook[4], key=const.KEY_BOOK_SCORE)],
+        [sg.Listbox(
+            values=readedBooks, size=(60, 4),
+            key="ReadedBooksList",
+            enable_events=True,
+            select_mode=sg.LISTBOX_SELECT_MODE_SINGLE
+        )],
+        [sg.Text('Read lang', (12, 1)), sg.In(size=(10, 1), default_text=readedBooks[0][2], key=const.KEY_READ_BOOK_LANG)],
+        [sg.Text('Read date', (12, 1)), sg.In(size=(10, 1), default_text=readedBooks[0][1], key=const.KEY_BOOK_READ_DATE)],
+        [sg.Text('Medium', (12, 1)), sg.In(size=(10, 1), default_text=readedBooks[0][3], key=const.KEY_BOOK_MEDIUM)],
+        [sg.Text('Score', (12, 1)), sg.In(size=(10, 1), default_text=readedBooks[0][4], key=const.KEY_BOOK_SCORE)],
         [sg.Listbox(
             values=[], size=(60, 4),
             key="ErrorList",
@@ -50,6 +56,17 @@ def editBook(con, bookId):
         event, values = winEditBook.read()
         if event == 'Cancel' or event == "Exit" or event == sg.WIN_CLOSED:
             break
+        if event == 'Check':
+            # check data
+            bookAuthorIds = winEditBook["BookAuthorList"].get_list_values()
+            bookAuthors = values[const.KEY_BOOK_AUTHORS]
+            for author in bookAuthors.split(','):
+                data = sqlite_utils.findAuthor(con, author.strip())
+                if data != None and len(data) > 0:
+                    for elem in data:
+                        if elem not in bookAuthorIds:
+                            bookAuthorIds.append(elem)
+            winEditBook["BookAuthorList"].update(bookAuthorIds)
         if event == 'Change book':
             try:
                 bookNameList = list(zip(*bookNames))[0]
@@ -60,6 +77,12 @@ def editBook(con, bookId):
                     sqlite_utils.insertBookNames(con, bookId, [[newName, newLang],])
                 sqlite_utils.updateBook(con, bookId, values[const.KEY_BOOK_TITLE].strip(), values[const.KEY_BOOK_LANG].strip(),
                     values[const.KEY_BOOK_PUBL_DATE].strip(), values[const.KEY_BOOK_GENRE].strip(), values[const.KEY_BOOK_NOTE].strip() )
+                bookAuthors = winEditBook["BookAuthorList"].get_list_values()
+                bookAuthorIds = []
+                for author in bookAuthors:
+                    bookAuthorIds.append(author[0])
+                sqlite_utils.deleteBookAuthors(con, bookId)
+                sqlite_utils.insertBookAuthors(con, bookId, bookAuthorIds)
                 con.commit()
             except Exception as e:
                 print ("Error %s:" % e.args[0])
@@ -72,5 +95,12 @@ def editBook(con, bookId):
             except Exception as e:
                 print ("Error %s:" % e.args[0])
                 con.rollback()
+        if event == "ReadedBooksList":
+            # get data of selected book
+            winEditBook[const.KEY_BOOK_READ_DATE].update(values["ReadedBooksList"][0][1].strip())
+            winEditBook[const.KEY_READ_BOOK_LANG].update(values["ReadedBooksList"][0][2].strip())
+            winEditBook[const.KEY_BOOK_MEDIUM].update(values["ReadedBooksList"][0][3].strip())
+            winEditBook[const.KEY_BOOK_SCORE].update(values["ReadedBooksList"][0][4])
+
 
     winEditBook.close()
