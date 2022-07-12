@@ -51,6 +51,12 @@ where b.word = a.name;
 
 
 -------------
+-- authors with more than 1 book
+select a.id, a.name, count(ab.book_id)
+from author_book ab, author a
+where a.id = ab.author_id
+GROUP by a.id, a.name
+HAVING count(ab.book_id) > 1
 
 -- readed books without author
 SELECT distinct br.book_id, b.title
