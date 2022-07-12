@@ -17,10 +17,10 @@ import ui_edit_book
 # sg.theme('DarkGray4')
 
 
-def ifnull(var, val):
-    if var is None:
-        return val
-    return var
+def backupDb(con):
+    with open('data/dump.sql', 'w') as f:
+        for line in con.iterdump():
+            f.write('%s\n' % line)    
 
 def editAuthor(con, author):
     edit_author_layout = [
@@ -67,7 +67,7 @@ search_layout = [
         right_click_menu=['unused', ['Edit book', 'Copy to clipboard']]
     )],
     [sg.Text('', key=const.KEY_BOOK_LIST_SIZE)],
-    [sg.Button("Add book")]
+    [sg.Button("Add book"), sg.Text('          '), sg.Button("Backup DB")]
 ]
 
 author_layout = [
@@ -148,13 +148,16 @@ while True:
         authorLang = values[const.KEY_AUTHOR_SYNONYMS][0][1]
         authorType = values[const.KEY_AUTHOR_SYNONYMS][0][2]
         window[const.KEY_AUTHOR_SYN_NAME].update(authorName)
-        window[const.KEY_AUTHOR_SYN_LANG].update(ifnull(authorLang, ''))
-        window[const.KEY_AUTHOR_SYN_TYPE].update(ifnull(authorType, ''))
+        window[const.KEY_AUTHOR_SYN_LANG].update(const.ifnull(authorLang, ''))
+        window[const.KEY_AUTHOR_SYN_TYPE].update(const.ifnull(authorType, ''))
         updateAuthorSynPosible = True
         authorSynName = authorName
 
     if event == "Add author":
         editAuthor(con, 'author')
+
+    if event == "Backup DB":
+        backupDb(con)
 
     if event == "Add book":
         ui_add_book.addBook(con, 'book')

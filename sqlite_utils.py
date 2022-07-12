@@ -162,6 +162,14 @@ def insertBookNames(con, bookId, names):
     for name in names:
         cur.execute('INSERT INTO book_names(book_id, name, lang) VALUES (?,?,?)', (bookId, name[0], name[1]))
 
+def updateBookName(con, bookId, lang, newName):
+    cur = con.cursor()
+    cur.execute('UPDATE book_names SET name = ? WHERE book_id = ? and lang = ?', (newName, bookId, lang))
+
+def deleteBookName(con, bookId, lang):
+    cur = con.cursor()
+    cur.execute('DELETE FROM book_names WHERE book_id = ? and lang = ?', (bookId, lang))
+
 def insertBookReaded(con, bookId, lang_read, date_read, medium, score):
     cur = con.cursor()
     cur.execute('INSERT INTO book_readed(book_id, lang_read, date_read, medium, score) VALUES (?,?,?,?,?)',

@@ -1,4 +1,5 @@
 from os import error
+from telnetlib import NOP
 import PySimpleGUI as sg
 from PySimpleGUI.PySimpleGUI import PopupOKCancel
 import sqlite3 as lite
@@ -18,7 +19,8 @@ def editBook(con, bookId):
         [sg.Listbox(
             values=authors, size=(60, 4),
             key="BookAuthorList",
-        )],
+            right_click_menu=['unused', ['Delete author']]),
+            sg.Button("Add author(s)", key="Add author")],
         [sg.Text('Title', (12, 1)), sg.In(size=(60, 1), default_text=book[1] , key=const.KEY_BOOK_TITLE)],
         [sg.Text('Lang', (12, 1)), sg.In(size=(10, 1), default_text=book[3], key=const.KEY_BOOK_LANG)],
         [sg.Text('Publish date', (12, 1)), sg.In(size=(10, 1), default_text=book[2], key=const.KEY_BOOK_PUBL_DATE)],
@@ -29,8 +31,12 @@ def editBook(con, bookId):
         [sg.Listbox(
             values=bookNames, size=(60, 4),
             key="BookNamesList",
+            enable_events=True,
+            select_mode=sg.LISTBOX_SELECT_MODE_SINGLE
         )],
-        [sg.Button("Add name"), sg.Button("Edit name"), sg.Button("Delete name")],
+        [sg.Text('Title', (8, 1)), sg.In(size=(60, 1), default_text=bookNames[0][0] , key=const.KEY_ALT_BOOK_TITLE)],
+        [sg.Text('Lang', (8, 1)), sg.In(size=(3, 1), default_text=bookNames[0][1] , key=const.KEY_ALT_BOOK_LANG)],
+        [sg.Button("Add name"), sg.Button("Save name"), sg.Button("Delete name")],
         [],
         [sg.Listbox(
             values=readedBooks, size=(60, 4),
@@ -47,7 +53,7 @@ def editBook(con, bookId):
             key="ErrorList",
         )],
         [sg.Button("Change read book")],
-        [sg.CloseButton("Close"), sg.Button("Check")],
+        [sg.CloseButton("Close")],
     ]
     winEditBook = sg.Window('Edit book', edit_book_layout)
 
@@ -56,7 +62,7 @@ def editBook(con, bookId):
         event, values = winEditBook.read()
         if event == 'Cancel' or event == "Exit" or event == sg.WIN_CLOSED:
             break
-        if event == 'Check':
+        if event == 'Add author':
             # check data
             bookAuthorIds = winEditBook["BookAuthorList"].get_list_values()
             bookAuthors = values[const.KEY_BOOK_AUTHORS]
@@ -75,8 +81,10 @@ def editBook(con, bookId):
                 newLang = values[const.KEY_BOOK_LANG].strip()
                 if newName not in bookNameList and newLang not in langList:
                     sqlite_utils.insertBookNames(con, bookId, [[newName, newLang],])
-                sqlite_utils.updateBook(con, bookId, values[const.KEY_BOOK_TITLE].strip(), values[const.KEY_BOOK_LANG].strip(),
+                sqlite_utils.updateBook(con, bookId, values[const.KEY_BOOK_TITLE].strip(), newLang,
                     values[const.KEY_BOOK_PUBL_DATE].strip(), values[const.KEY_BOOK_GENRE].strip(), values[const.KEY_BOOK_NOTE].strip() )
+                if len(newLang) > 0:
+                    sqlite_utils.updateBookName(con, bookId, newLang, newName)
                 bookAuthors = winEditBook["BookAuthorList"].get_list_values()
                 bookAuthorIds = []
                 for author in bookAuthors:
@@ -99,8 +107,58 @@ def editBook(con, bookId):
             # get data of selected book
             winEditBook[const.KEY_BOOK_READ_DATE].update(values["ReadedBooksList"][0][1].strip())
             winEditBook[const.KEY_READ_BOOK_LANG].update(values["ReadedBooksList"][0][2].strip())
-            winEditBook[const.KEY_BOOK_MEDIUM].update(values["ReadedBooksList"][0][3].strip())
+            winEditBook[const.KEY_BOOK_MEDIUM].update(const.ifnull(values["ReadedBooksList"][0][3], "").strip())
             winEditBook[const.KEY_BOOK_SCORE].update(values["ReadedBooksList"][0][4])
+
+        if event == "Delete author":
+            if len(values["BookAuthorList"]) > 0:
+                bookAuthors = winEditBook["BookAuthorList"].get_list_values()
+                selAuthors = winEditBook["BookAuthorList"].get_indexes()
+                for ind in selAuthors:
+                    del bookAuthors[ind]
+                winEditBook["BookAuthorList"].update(bookAuthors)
+
+        if event == 'BookNamesList':
+            # get data of selected name
+            winEditBook[const.KEY_ALT_BOOK_TITLE].update(values["BookNamesList"][0][0].strip())
+            winEditBook[const.KEY_ALT_BOOK_LANG].update(values["BookNamesList"][0][1].strip())
+
+        if event == "Add name":
+            lang = values[const.KEY_ALT_BOOK_LANG].strip()
+            title = values[const.KEY_ALT_BOOK_TITLE].strip()
+            if (len(lang) > 0 and len(title) > 0):
+                try:
+                    sqlite_utils.insertBookNames(con, bookId, [[title, lang], ])
+                    bookNames = sqlite_utils.getBookNames(con, bookId)
+                    winEditBook["BookNamesList"].update(bookNames)
+                    con.commit()
+                except Exception as e:
+                    print ("Error %s:" % e.args[0])
+                    con.rollback()
+
+        if event == "Save name":
+            lang = values[const.KEY_ALT_BOOK_LANG].strip()
+            title = values[const.KEY_ALT_BOOK_TITLE].strip()
+            if (len(lang) > 0 and len(title) > 0):
+                try:
+                    sqlite_utils.updateBookName(con, bookId, lang, title)
+                    bookNames = sqlite_utils.getBookNames(con, bookId)
+                    winEditBook["BookNamesList"].update(bookNames)
+                    con.commit()
+                except Exception as e:
+                    print ("Error %s:" % e.args[0])
+                    con.rollback()
+
+        if event == "Delete name":
+            lang = values[const.KEY_ALT_BOOK_LANG].strip()
+            if (len(lang) > 0):
+                try:
+                    sqlite_utils.deleteBookName(con, bookId, lang)
+                    bookNames = sqlite_utils.getBookNames(con, bookId)
+                    winEditBook["BookNamesList"].update(bookNames)
+                except Exception as e:
+                    print ("Error %s:" % e.args[0])
+                    con.rollback()
 
 
     winEditBook.close()
