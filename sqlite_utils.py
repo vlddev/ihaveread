@@ -112,7 +112,7 @@ def getBook(con, bookId):
 def getReadedBooks(con, bookId):
     ret = None
     cur = con.cursor()
-    cur.execute('SELECT b.book_id, b.date_read, b.lang_read, b.medium, b.score FROM book_readed b WHERE b.book_id = ?', (bookId,))
+    cur.execute('SELECT b.book_id, b.date_read, b.lang_read, b.medium, b.score, b.note FROM book_readed b WHERE b.book_id = ?', (bookId,))
     data = cur.fetchall()
     if data != None and len(data) > 0:
         ret = data
@@ -175,10 +175,10 @@ def insertBookReaded(con, bookId, lang_read, date_read, medium, score):
     cur.execute('INSERT INTO book_readed(book_id, lang_read, date_read, medium, score) VALUES (?,?,?,?,?)',
         (bookId, lang_read, date_read, medium, score))
 
-def updateBookReaded(con, bookId, lang_read, date_read, medium, score):
+def updateBookReaded(con, bookId, lang_read, date_read, medium, score, note):
     cur = con.cursor()
-    cur.execute('UPDATE book_readed SET lang_read = ?, date_read = ?, medium = ?, score = ? WHERE book_id = ? and lang_read = ?', 
-        (lang_read, date_read, medium, score, bookId, lang_read))
+    cur.execute('UPDATE book_readed SET lang_read = ?, date_read = ?, medium = ?, score = ?, note = ? WHERE book_id = ? and lang_read = ?', 
+        (lang_read, date_read, medium, score, note, bookId, lang_read))
 
 def insertBookAuthors(con, bookId, authorIds):
     cur = con.cursor()

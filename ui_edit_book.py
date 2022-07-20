@@ -48,6 +48,7 @@ def editBook(con, bookId):
         [sg.Text('Read date', (12, 1)), sg.In(size=(10, 1), default_text=readedBooks[0][1], key=const.KEY_BOOK_READ_DATE)],
         [sg.Text('Medium', (12, 1)), sg.In(size=(10, 1), default_text=readedBooks[0][3], key=const.KEY_BOOK_MEDIUM)],
         [sg.Text('Score', (12, 1)), sg.In(size=(10, 1), default_text=readedBooks[0][4], key=const.KEY_BOOK_SCORE)],
+        [sg.Text('Note', (12, 1)), sg.In(size=(50, 1), default_text=readedBooks[0][5], key=const.KEY_READ_BOOK_NOTE)],
         [sg.Listbox(
             values=[], size=(60, 4),
             key="ErrorList",
@@ -98,7 +99,7 @@ def editBook(con, bookId):
         if event == 'Change read book':
             try:
                 sqlite_utils.updateBookReaded(con, bookId, values[const.KEY_READ_BOOK_LANG].strip(), values[const.KEY_BOOK_READ_DATE].strip(),
-                    values[const.KEY_BOOK_MEDIUM].strip(), values[const.KEY_BOOK_SCORE].strip() )
+                    values[const.KEY_BOOK_MEDIUM].strip(), values[const.KEY_BOOK_SCORE].strip(), values[const.KEY_READ_BOOK_NOTE].strip() )
                 con.commit()
             except Exception as e:
                 print ("Error %s:" % e.args[0])
@@ -109,6 +110,7 @@ def editBook(con, bookId):
             winEditBook[const.KEY_READ_BOOK_LANG].update(values["ReadedBooksList"][0][2].strip())
             winEditBook[const.KEY_BOOK_MEDIUM].update(const.ifnull(values["ReadedBooksList"][0][3], "").strip())
             winEditBook[const.KEY_BOOK_SCORE].update(values["ReadedBooksList"][0][4])
+            winEditBook[const.KEY_READ_BOOK_NOTE].update(values["ReadedBooksList"][0][5])
 
         if event == "Delete author":
             if len(values["BookAuthorList"]) > 0:
