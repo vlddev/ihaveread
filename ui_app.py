@@ -102,7 +102,10 @@ app_layout = [[sg.TabGroup([[sg.Tab('Search', search_layout, key='-mykey-'),
                          ]], key='-group1-',  )
             ]]
 
-window = sg.Window("I have read", app_layout)
+window = sg.Window("I have read", app_layout, finalize=True)
+
+# Add the ability to double-click a cell
+window[const.KEY_BOOK_LIST].bind('<Double-Button-1>' , "+-double click-")
 
 con = lite.connect(const.LIB_DB)
 
@@ -162,7 +165,7 @@ while True:
     if event == "Add book":
         ui_add_book.addBook(con, 'book')
 
-    if event == "Edit book":
+    if event == const.KEY_BOOK_LIST+"+-double click-" or event == "Edit book":
         if len(values[const.KEY_BOOK_LIST]) > 0:
             rowNum = values[const.KEY_BOOK_LIST][0]
             bookId = window[const.KEY_BOOK_LIST].Values[rowNum][0]
