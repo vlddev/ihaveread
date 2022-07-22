@@ -11,6 +11,7 @@ def editBook(con, bookId):
     #  populate fields
     book = sqlite_utils.getBook(con, bookId)
     readedBooks = sqlite_utils.getReadedBooks(con, bookId)
+    readedBookId = readedBooks[0][6]
     authors = sqlite_utils.getBookAuthors(con, bookId)
     bookNames = sqlite_utils.getBookNames(con, bookId)
 
@@ -98,7 +99,7 @@ def editBook(con, bookId):
                 con.rollback()
         if event == 'Change read book':
             try:
-                sqlite_utils.updateBookReaded(con, bookId, values[const.KEY_READ_BOOK_LANG].strip(), values[const.KEY_BOOK_READ_DATE].strip(),
+                sqlite_utils.updateBookReaded(con, readedBookId, values[const.KEY_READ_BOOK_LANG].strip(), values[const.KEY_BOOK_READ_DATE].strip(),
                     values[const.KEY_BOOK_MEDIUM].strip(), values[const.KEY_BOOK_SCORE].strip(), values[const.KEY_READ_BOOK_NOTE].strip() )
                 con.commit()
             except Exception as e:
@@ -111,6 +112,7 @@ def editBook(con, bookId):
             winEditBook[const.KEY_BOOK_MEDIUM].update(const.ifnull(values["ReadedBooksList"][0][3], "").strip())
             winEditBook[const.KEY_BOOK_SCORE].update(values["ReadedBooksList"][0][4])
             winEditBook[const.KEY_READ_BOOK_NOTE].update(values["ReadedBooksList"][0][5])
+            readedBookId = values["ReadedBooksList"][0][6]
 
         if event == "Delete author":
             if len(values["BookAuthorList"]) > 0:
