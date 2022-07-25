@@ -54,7 +54,7 @@ def editBook(con, bookId):
             values=[], size=(60, 4),
             key="ErrorList",
         )],
-        [sg.Button("Change read book")],
+        [sg.Button("Add read book"), sg.Button("Change read book")],
         [sg.CloseButton("Close")],
     ]
     winEditBook = sg.Window('Edit book', edit_book_layout)
@@ -101,6 +101,14 @@ def editBook(con, bookId):
             try:
                 sqlite_utils.updateBookReaded(con, readedBookId, values[const.KEY_READ_BOOK_LANG].strip(), values[const.KEY_BOOK_READ_DATE].strip(),
                     values[const.KEY_BOOK_MEDIUM].strip(), values[const.KEY_BOOK_SCORE].strip(), values[const.KEY_READ_BOOK_NOTE].strip() )
+                con.commit()
+            except Exception as e:
+                print ("Error %s:" % e.args[0])
+                con.rollback()
+        if event == 'Add read book':
+            try:
+                sqlite_utils.insertBookReaded(con, readedBookId, values[const.KEY_READ_BOOK_LANG].strip(), values[const.KEY_BOOK_READ_DATE].strip(),
+                    values[const.KEY_BOOK_MEDIUM].strip(), values[const.KEY_BOOK_SCORE].strip() )
                 con.commit()
             except Exception as e:
                 print ("Error %s:" % e.args[0])
