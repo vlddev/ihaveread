@@ -29,7 +29,7 @@ def addBook(con, book):
         )],
         [sg.Submit(), sg.Cancel(), sg.Button("Check")],
     ]
-    winAddBook = sg.Window('Add author', edit_book_layout)
+    winAddBook = sg.Window('Add book', edit_book_layout)
     # Run the Event Loop
     while True:
         event, values = winAddBook.read()
