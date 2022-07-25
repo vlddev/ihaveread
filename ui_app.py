@@ -15,6 +15,8 @@ import ui_edit_book
 # sg.theme_previewer()
 # sg.theme('Light Gray')
 # sg.theme('DarkGray4')
+sg.set_options(font=('Helvetica', 11))
+# newfont = ("Courier New", 12, "bold underline") 
 
 
 def backupDb(con):
