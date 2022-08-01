@@ -14,6 +14,7 @@ def editBook(con, bookId):
     readedBookId = readedBooks[0][6]
     authors = sqlite_utils.getBookAuthors(con, bookId)
     bookNames = sqlite_utils.getBookNames(con, bookId)
+    bookNameId = bookNames[0][2]
 
     edit_book_layout = [
         [sg.Text('Author(s)'), sg.In(size=(60, 1), key=const.KEY_BOOK_AUTHORS)],
@@ -85,8 +86,8 @@ def editBook(con, bookId):
                     sqlite_utils.insertBookNames(con, bookId, [[newName, newLang],])
                 sqlite_utils.updateBook(con, bookId, values[const.KEY_BOOK_TITLE].strip(), newLang,
                     values[const.KEY_BOOK_PUBL_DATE].strip(), values[const.KEY_BOOK_GENRE].strip(), values[const.KEY_BOOK_NOTE].strip() )
-                if len(newLang) > 0:
-                    sqlite_utils.updateBookName(con, bookId, newLang, newName)
+                #if len(newLang) > 0:
+                #    sqlite_utils.updateBookName(con, bookId, newLang, newName)
                 bookAuthors = winEditBook["BookAuthorList"].get_list_values()
                 bookAuthorIds = []
                 for author in bookAuthors:
@@ -134,6 +135,7 @@ def editBook(con, bookId):
             # get data of selected name
             winEditBook[const.KEY_ALT_BOOK_TITLE].update(values["BookNamesList"][0][0].strip())
             winEditBook[const.KEY_ALT_BOOK_LANG].update(values["BookNamesList"][0][1].strip())
+            bookNameId = values["BookNamesList"][0][2]
 
         if event == "Add name":
             lang = values[const.KEY_ALT_BOOK_LANG].strip()
@@ -153,7 +155,7 @@ def editBook(con, bookId):
             title = values[const.KEY_ALT_BOOK_TITLE].strip()
             if (len(lang) > 0 and len(title) > 0):
                 try:
-                    sqlite_utils.updateBookName(con, bookId, lang, title)
+                    sqlite_utils.updateBookName(con, bookNameId, lang, title)
                     bookNames = sqlite_utils.getBookNames(con, bookId)
                     winEditBook["BookNamesList"].update(bookNames)
                     con.commit()
@@ -162,10 +164,9 @@ def editBook(con, bookId):
                     con.rollback()
 
         if event == "Delete name":
-            lang = values[const.KEY_ALT_BOOK_LANG].strip()
             if (len(lang) > 0):
                 try:
-                    sqlite_utils.deleteBookName(con, bookId, lang)
+                    sqlite_utils.deleteBookName(con, bookNameId)
                     bookNames = sqlite_utils.getBookNames(con, bookId)
                     winEditBook["BookNamesList"].update(bookNames)
                 except Exception as e:

@@ -151,7 +151,7 @@ def insertBook_err(con, title, lang, publish_date, genre, note):
 
 def getBookNames(con, authorId):
     cur = con.cursor()
-    cur.execute("""SELECT name, lang
+    cur.execute("""SELECT name, lang, id
             FROM book_names
             WHERE book_id = ?""", (authorId,))
     data = cur.fetchall()
@@ -162,13 +162,13 @@ def insertBookNames(con, bookId, names):
     for name in names:
         cur.execute('INSERT INTO book_names(book_id, name, lang) VALUES (?,?,?)', (bookId, name[0], name[1]))
 
-def updateBookName(con, bookId, lang, newName):
+def updateBookName(con, id, lang, newName):
     cur = con.cursor()
-    cur.execute('UPDATE book_names SET name = ? WHERE book_id = ? and lang = ?', (newName, bookId, lang))
+    cur.execute('UPDATE book_names SET lang = ?, name = ? WHERE id = ?', (lang, newName, id))
 
-def deleteBookName(con, bookId, lang):
+def deleteBookName(con, id):
     cur = con.cursor()
-    cur.execute('DELETE FROM book_names WHERE book_id = ? and lang = ?', (bookId, lang))
+    cur.execute('DELETE FROM book_names WHERE id = ?', (id, ))
 
 def insertBookReaded(con, bookId, lang_read, date_read, medium, score):
     cur = con.cursor()
