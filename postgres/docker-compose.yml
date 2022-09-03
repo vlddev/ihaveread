@@ -1,0 +1,17 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app#pwd
+      POSTGRES_DB: app
+    user: "1001:1001"  # $(id -u):$(id -g) 
+    volumes:
+      - "./postgres.conf:/usr/local/etc/postgres/postgres.conf" 
+      - "./data:/var/lib/postgresql/data:delegated"
+      - "./init:/docker-entrypoint-initdb.d"
+    command: "postgres -c config_file=/usr/local/etc/postgres/postgres.conf"
+
