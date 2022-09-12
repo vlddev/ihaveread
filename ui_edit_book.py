@@ -38,7 +38,7 @@ def editBook(con, bookId):
         )],
         [sg.Text('Title', (8, 1)), sg.In(size=(60, 1), default_text=bookNames[0][0] , key=const.KEY_ALT_BOOK_TITLE)],
         [sg.Text('Lang', (8, 1)), sg.In(size=(3, 1), default_text=bookNames[0][1] , key=const.KEY_ALT_BOOK_LANG)],
-        [sg.Button("Add name"), sg.Button("Save name"), sg.Button("Delete name")],
+        [sg.Button("Add name"), sg.Button("Save name"), sg.Text('    '), sg.Button("Delete name")],
         [],
         [sg.Listbox(
             values=readedBooks, size=(60, 4),
@@ -55,7 +55,7 @@ def editBook(con, bookId):
             values=[], size=(60, 4),
             key="ErrorList",
         )],
-        [sg.Button("Add read book"), sg.Button("Change read book")],
+        [sg.Button("Add read book"), sg.Button("Change read book"), sg.Text('    '), sg.Button("Delete read book")],
         [sg.CloseButton("Close")],
     ]
     winEditBook = sg.Window('Edit book', edit_book_layout)
@@ -106,9 +106,16 @@ def editBook(con, bookId):
             except Exception as e:
                 print ("Error %s:" % e.args[0])
                 con.rollback()
+        if event == 'Delete read book':
+            try:
+                sqlite_utils.deleteBookReaded(con, readedBookId )
+                con.commit()
+            except Exception as e:
+                print ("Error %s:" % e.args[0])
+                con.rollback()
         if event == 'Add read book':
             try:
-                sqlite_utils.insertBookReaded(con, readedBookId, values[const.KEY_READ_BOOK_LANG].strip(), values[const.KEY_BOOK_READ_DATE].strip(),
+                sqlite_utils.insertBookReaded(con, bookId, values[const.KEY_READ_BOOK_LANG].strip(), values[const.KEY_BOOK_READ_DATE].strip(),
                     values[const.KEY_BOOK_MEDIUM].strip(), values[const.KEY_BOOK_SCORE].strip() )
                 con.commit()
             except Exception as e:
@@ -164,14 +171,14 @@ def editBook(con, bookId):
                     con.rollback()
 
         if event == "Delete name":
-            if (len(lang) > 0):
-                try:
-                    sqlite_utils.deleteBookName(con, bookNameId)
-                    bookNames = sqlite_utils.getBookNames(con, bookId)
-                    winEditBook["BookNamesList"].update(bookNames)
-                except Exception as e:
-                    print ("Error %s:" % e.args[0])
-                    con.rollback()
+            try:
+                sqlite_utils.deleteBookName(con, bookNameId)
+                con.commit()
+                bookNames = sqlite_utils.getBookNames(con, bookId)
+                winEditBook["BookNamesList"].update(bookNames)
+            except Exception as e:
+                print ("Error %s:" % e.args[0])
+                con.rollback()
 
 
     winEditBook.close()

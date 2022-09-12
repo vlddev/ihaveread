@@ -180,6 +180,10 @@ def updateBookReaded(con, id, lang_read, date_read, medium, score, note):
     cur.execute('UPDATE book_readed SET lang_read = ?, date_read = ?, medium = ?, score = ?, note = ? WHERE id = ?', 
         (lang_read, date_read, medium, score, note, id))
 
+def deleteBookReaded(con, id):
+    cur = con.cursor()
+    cur.execute('DELETE FROM book_readed WHERE id = ?', (id, ))
+
 def insertBookAuthors(con, bookId, authorIds):
     cur = con.cursor()
     for authorId in authorIds:
