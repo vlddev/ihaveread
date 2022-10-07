@@ -1,6 +1,12 @@
 import re
 import sqlite3 as lite
+import dao
 
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
 
 def normalizeStr(str):
     norm = str.replace('_', ' ')
@@ -22,7 +28,13 @@ def findAuthor(con, author):
     cur.execute("""SELECT distinct a.id, a.name 
             FROM author a, author_names an
             WHERE an.name like ? and a.id = an.author_id""", ('%{}%'.format(author),))
-    data = cur.fetchall()
+    # data = cur.fetchall()
+    data = []
+    row = cur.fetchone()
+    while row != None:
+        author = dao.Author(dict_factory(cur, row))
+        data.append(author)
+        row = cur.fetchone()
     return data
 
 def getAuthorNames(con, authorId):

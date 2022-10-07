@@ -110,6 +110,7 @@ window = sg.Window("I have read", app_layout, finalize=True)
 window[const.KEY_BOOK_LIST].bind('<Double-Button-1>' , "+-double click-")
 
 con = lite.connect(const.LIB_DB)
+# con.row_factory = lite.Row
 
 # Run the Event Loop
 while True:
@@ -143,12 +144,14 @@ while True:
         window[const.KEY_AUTHOR_LIST].update(list)
 
     if event == const.KEY_AUTHOR_LIST:
-        authorId = values[const.KEY_AUTHOR_LIST][0][0]
+        #authorId = values[const.KEY_AUTHOR_LIST][0][0]
+        authorId = values[const.KEY_AUTHOR_LIST][0].id
         list = sqlite_utils.getAuthorNames(con, authorId)
         window[const.KEY_AUTHOR_SYNONYMS].update(list)
 
     if event == const.KEY_AUTHOR_SYNONYMS:
-        authorId = values[const.KEY_AUTHOR_LIST][0][0]
+        #authorId = values[const.KEY_AUTHOR_LIST][0][0]
+        authorId = values[const.KEY_AUTHOR_LIST][0].id
         authorName = values[const.KEY_AUTHOR_SYNONYMS][0][0]
         authorLang = values[const.KEY_AUTHOR_SYNONYMS][0][1]
         authorType = values[const.KEY_AUTHOR_SYNONYMS][0][2]

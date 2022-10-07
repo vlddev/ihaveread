@@ -6,6 +6,10 @@ class Author:
         self.id = dataDict["id"]
         self.name = dataDict["name"]
 
+    def __str__(self):
+        return '{} {}'.format(self.id, self.name)
+
+
 class AuthorName:
     def __init__(self, dataDict):
         self.id = dataDict["id"]
