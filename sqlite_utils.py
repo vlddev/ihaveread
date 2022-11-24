@@ -81,7 +81,7 @@ def getReadedBooksByTitle(con, title):
         br.book_id = b.id
         and br.book_id = ab.book_id
         and ab.author_id = a.id
-        and b.title like ?
+        and b.id in (select distinct book_id from book_names where name like ?)
         order by br.date_read""", ('%{}%'.format(title),))
     return cur.fetchall()
 
@@ -97,7 +97,7 @@ def getReadedBooksByYear(con, year):
         and br.book_id = ab.book_id
         and ab.author_id = a.id
         and br.date_read like ?
-        order by br.date_read""", ('{}%'.format(normalizeStr(year)),))
+        order by br.date_read""", ('{}%'.format(year),))
     return cur.fetchall()
 
 def getBook(con, bookId):
