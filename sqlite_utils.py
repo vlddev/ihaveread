@@ -19,7 +19,7 @@ def getAuthor(con, author):
 
 def findAuthor(con, author):
     cur = con.cursor()
-    cur.execute("""SELECT distinct a.id, a.name 
+    cur.execute("""SELECT distinct a.id, a.name, a.lang
             FROM author a, author_names an
             WHERE an.name like ? and a.id = an.author_id""", ('%{}%'.format(author),))
     data = cur.fetchall()
