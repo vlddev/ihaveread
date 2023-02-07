@@ -19,7 +19,7 @@ def getAuthor(con, author):
 
 def findAuthor(con, author):
     cur = con.cursor()
-    cur.execute("""SELECT distinct a.id, a.name, a.lang
+    cur.execute("""SELECT distinct a.id, a.name, a.lang, a.note
             FROM author a, author_names an
             WHERE an.name like ? and a.id = an.author_id""", ('%{}%'.format(author),))
     data = cur.fetchall()
@@ -38,6 +38,12 @@ def insertAuthor(con, author, lang):
     cur.execute('INSERT INTO author(name, lang) VALUES (?,?)', (author ,lang))
     ret = cur.lastrowid
     return ret
+
+def updateAuthor(con, authorId, name, lang, note):
+    cur = con.cursor()
+    cur.execute("""UPDATE author 
+        SET name = ?, lang = ?, note = ? 
+        WHERE id = ?""", (name, lang, note, authorId))
 
 def insertAuthorNames(con, authorId, names):
     cur = con.cursor()

@@ -84,14 +84,19 @@ author_layout = [
             key=const.KEY_AUTHOR_LIST,
             select_mode=sg.LISTBOX_SELECT_MODE_SINGLE),
         sg.Column(
-            [[sg.Listbox(
-                values=[], enable_events=True, size=(50, 10),
-                key=const.KEY_AUTHOR_SYNONYMS,
-                select_mode=sg.LISTBOX_SELECT_MODE_SINGLE)],
-            [sg.Text('Name'), sg.In(size=(50, 1), key=const.KEY_AUTHOR_SYN_NAME)],
-            [sg.Text('Lang'), sg.In(size=(50, 1), key=const.KEY_AUTHOR_SYN_LANG)],
-            [sg.Text('Type'), sg.In(size=(50, 1), key=const.KEY_AUTHOR_SYN_TYPE)],
-            [sg.Button("Save synonym"), sg.Button("Add synonym"), sg.Text('   '), sg.Button("Delete synonym")],
+            [
+                [sg.Text('Author name'), sg.In(size=(50, 1), key=const.KEY_AUTHOR_NAME)],
+                [sg.Text('Author lang'), sg.In(size=(50, 1), key=const.KEY_AUTHOR_LANG)],
+                [sg.Text('Author note'), sg.In(size=(50, 1), key=const.KEY_AUTHOR_NOTE)],
+                [sg.Button("Save author"), sg.Text('   '), sg.Button("Delete author")],
+                [sg.Listbox(
+                    values=[], enable_events=True, size=(50, 5),
+                    key=const.KEY_AUTHOR_SYNONYMS,
+                    select_mode=sg.LISTBOX_SELECT_MODE_SINGLE)],
+                [sg.Text('Name'), sg.In(size=(50, 1), key=const.KEY_AUTHOR_SYN_NAME)],
+                [sg.Text('Lang'), sg.In(size=(50, 1), key=const.KEY_AUTHOR_SYN_LANG)],
+                [sg.Text('Type'), sg.In(size=(50, 1), key=const.KEY_AUTHOR_SYN_TYPE)],
+                [sg.Button("Save synonym"), sg.Button("Add synonym"), sg.Text('   '), sg.Button("Delete synonym")],
             ], vertical_alignment='top')
     ]
 ]
@@ -142,10 +147,28 @@ while True:
         list = sqlite_utils.findAuthor(con, toFind)
         window[const.KEY_AUTHOR_LIST].update(list)
 
-    if event == const.KEY_AUTHOR_LIST:
+    if event == "Save author":
         authorId = values[const.KEY_AUTHOR_LIST][0][0]
+        try:
+            sqlite_utils.updateAuthor(con, authorId, values[const.KEY_AUTHOR_NAME].strip(),
+                values[const.KEY_AUTHOR_LANG].strip(), values[const.KEY_AUTHOR_NOTE].strip())
+            con.commit()
+        except Exception as e:
+            print ("Error %s:" % e.args[0])
+            con.rollback()
+
+    if event == "Delete author":
+        authorId = values[const.KEY_AUTHOR_LIST][0][0]
+        # TODO
+
+    if event == const.KEY_AUTHOR_LIST:
+        selAuthor = values[const.KEY_AUTHOR_LIST][0]
+        authorId = selAuthor[0]
         list = sqlite_utils.getAuthorNames(con, authorId)
         window[const.KEY_AUTHOR_SYNONYMS].update(list)
+        window[const.KEY_AUTHOR_NAME].update(selAuthor[1])
+        window[const.KEY_AUTHOR_LANG].update(const.ifnull(selAuthor[2], ''))
+        window[const.KEY_AUTHOR_NOTE].update(const.ifnull(selAuthor[3], ''))
 
     if event == const.KEY_AUTHOR_SYNONYMS:
         authorId = values[const.KEY_AUTHOR_LIST][0][0]
