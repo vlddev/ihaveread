@@ -21,7 +21,7 @@ def editBook(con, bookId):
         [sg.Listbox(
             values=authors, size=(60, 4),
             key="BookAuthorList",
-            right_click_menu=['unused', ['Delete author']]),
+            right_click_menu=['unused', ['Delete author', 'Copy to clipboard']]),
             sg.Button("Add author(s)", key="Add author")],
         [sg.Text('Title', (12, 1)), sg.In(size=(60, 1), default_text=book[1] , key=const.KEY_BOOK_TITLE)],
         [sg.Text('Lang', (12, 1)), sg.In(size=(10, 1), default_text=book[3], key=const.KEY_BOOK_LANG)],
@@ -137,6 +137,17 @@ def editBook(con, bookId):
                 for ind in selAuthors:
                     del bookAuthors[ind]
                 winEditBook["BookAuthorList"].update(bookAuthors)
+        
+                
+        if event == "Copy to clipboard":
+            if len(values["BookAuthorList"]) > 0:
+                dataRows = []
+                bookAuthors = winEditBook["BookAuthorList"].get_list_values()
+                selAuthors = winEditBook["BookAuthorList"].get_indexes()
+                for ind in selAuthors:
+                    dataRows.append("\t".join(map(str,bookAuthors[ind])))
+                sg.clipboard_set("\n".join(dataRows))
+
 
         if event == 'BookNamesList':
             # get data of selected name
