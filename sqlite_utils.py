@@ -33,9 +33,9 @@ def getAuthorNames(con, authorId):
     data = cur.fetchall()
     return data
 
-def insertAuthor(con, author, lang):
+def insertAuthor(con, author, lang, note):
     cur = con.cursor()
-    cur.execute('INSERT INTO author(name, lang) VALUES (?,?)', (author ,lang))
+    cur.execute('INSERT INTO author(name, lang, note) VALUES (?,?,?)', (author ,lang, note))
     ret = cur.lastrowid
     return ret
 

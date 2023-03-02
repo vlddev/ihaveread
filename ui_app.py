@@ -29,6 +29,7 @@ def editAuthor(con, author):
         [sg.Text('Name(s)'), sg.In(size=(60, 1), key=const.KEY_AUTHOR_NAME)],
         [sg.Text('Surname'), sg.In(size=(60, 1), key=const.KEY_AUTHOR_SURNAME)],
         [sg.Text('Language'), sg.In(size=(60, 1), key=const.KEY_AUTHOR_LANG)],
+        [sg.Text('Note'), sg.In(size=(60, 1), key=const.KEY_AUTHOR_NOTE)],
         [sg.Listbox(
             values=[], enable_events=True, size=(60, 10),
             key=const.KEY_AUTHOR_SYNONYMS,
@@ -43,7 +44,7 @@ def editAuthor(con, author):
         authNormName = values[const.KEY_AUTHOR_SURNAME].strip() + ", " + values[const.KEY_AUTHOR_NAME].strip()
         authName = values[const.KEY_AUTHOR_NAME].strip() + " " + values[const.KEY_AUTHOR_SURNAME].strip()
         try:
-            authorId = sqlite_utils.insertAuthor(con, authNormName, values[const.KEY_AUTHOR_LANG].strip())
+            authorId = sqlite_utils.insertAuthor(con, authNormName, values[const.KEY_AUTHOR_LANG].strip(), values[const.KEY_AUTHOR_NOTE].strip())
             sqlite_utils.insertAuthorNames(con, authorId, [authNormName, authName])
             con.commit()
         except Exception as e:
