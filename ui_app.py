@@ -126,19 +126,19 @@ while True:
 
     #
     if event == "Books by author":
-        toFind = values[const.KEY_SEARCH_BOOK]
+        toFind = values[const.KEY_SEARCH_BOOK].strip()
         list = sqlite_utils.getReadedBooksByAuthor(con, toFind)
         window[const.KEY_BOOK_LIST].update(list)
         window[const.KEY_BOOK_LIST_SIZE].update(str(len(list))+" books")
 
     if event == "by title":
-        toFind = values[const.KEY_SEARCH_BOOK]
+        toFind = values[const.KEY_SEARCH_BOOK].strip()
         list = sqlite_utils.getReadedBooksByTitle(con, toFind)
         window[const.KEY_BOOK_LIST].update(list)
         window[const.KEY_BOOK_LIST_SIZE].update(str(len(list))+" books")
 
     if event == "by year":
-        toFind = values[const.KEY_SEARCH_BOOK]
+        toFind = values[const.KEY_SEARCH_BOOK].strip()
         list = sqlite_utils.getReadedBooksByYear(con, toFind)
         window[const.KEY_BOOK_LIST].update(list)
         window[const.KEY_BOOK_LIST_SIZE].update(str(len(list))+" books")
