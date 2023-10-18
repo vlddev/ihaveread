@@ -67,12 +67,13 @@ def getReadedBooksByAuthor(con, author):
             (select group_concat(a.name, '; ') from author a, author_book ab where ab.book_id = b.id and ab.author_id = a.id) authors,
             ifnull((select bn.name from book_names bn where bn.book_id = b.id and bn.lang = br.lang_read), b.title) title,
             br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
-        FROM book_readed br, book b, author_book ab, author a 
+        FROM book_readed br, book b, author_book ab, author a, author_names an
         WHERE 
         br.book_id = b.id
         and br.book_id = ab.book_id
         and ab.author_id = a.id
-        and a.name like ?
+        and an.author_id = a.id
+        and an.name like ?
         order by br.date_read""", ('%{}%'.format(author),))
     return cur.fetchall()
 
