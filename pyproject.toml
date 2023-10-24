@@ -1,0 +1,4 @@
+[tool.pyproject-appimage]
+script = "ui_app.py"
+output = "ihaveread.AppImage"
+# python-version = "3.10"
