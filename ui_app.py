@@ -57,7 +57,8 @@ search_layout = [
         sg.In(size=(60, 1), enable_events=True, key=const.KEY_SEARCH_BOOK),
         sg.Button("Books by author"),
         sg.Button("by title"),
-        sg.Button("by year")
+        sg.Button("by year"),
+        sg.Button("by score")
     ],
     [sg.Table(
         values=[], headings=["id", "read on", "author", "title", "lang", "published", "medium", "score", "genre", "note"],
@@ -140,6 +141,12 @@ while True:
     if event == "by year":
         toFind = values[const.KEY_SEARCH_BOOK].strip()
         list = sqlite_utils.getReadedBooksByYear(con, toFind)
+        window[const.KEY_BOOK_LIST].update(list)
+        window[const.KEY_BOOK_LIST_SIZE].update(str(len(list))+" books")
+
+    if event == "by score":
+        toFind = values[const.KEY_SEARCH_BOOK].strip()
+        list = sqlite_utils.getReadedBooksByScore(con, toFind)
         window[const.KEY_BOOK_LIST].update(list)
         window[const.KEY_BOOK_LIST_SIZE].update(str(len(list))+" books")
 

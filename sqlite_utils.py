@@ -107,6 +107,21 @@ def getReadedBooksByYear(con, year):
         order by br.date_read""", ('{}%'.format(year),))
     return cur.fetchall()
 
+def getReadedBooksByScore(con, year):
+    cur = con.cursor()
+    cur.execute("""SELECT distinct br.book_id, br.date_read, 
+            (select group_concat(a.name, '; ') from author a, author_book ab where ab.book_id = b.id and ab.author_id = a.id) authors,
+            ifnull((select bn.name from book_names bn where bn.book_id = b.id and bn.lang = br.lang_read), b.title) title,
+            br.lang_read, b.publish_date, br.medium, br.score, b.genre, b.note
+        from book_readed br, book b, author_book ab, author a 
+        where 
+        br.book_id = b.id
+        and br.book_id = ab.book_id
+        and ab.author_id = a.id
+        and br.date_read like ?
+        order by br.score desc""", ('{}%'.format(year),))
+    return cur.fetchall()
+
 def getBook(con, bookId):
     ret = None
     cur = con.cursor()
