@@ -40,6 +40,8 @@ def addBook(con, book):
             bookAuthors = values[const.KEY_BOOK_AUTHORS]
             bookAuthorIds = []
             for author in bookAuthors.split(','):
+                if len(author.strip()) == 0:
+                    continue
                 data = sqlite_utils.findAuthor(con, author.strip())
                 if data != None and len(data) > 0:
                     for elem in data:
@@ -58,19 +60,25 @@ def addBook(con, book):
                 bookNames.append([origBookTitle, origBookLang])
             # TODO implement check insert possible
             try:
+                # get authors
+                bookAuthors = values[const.KEY_BOOK_AUTHORS]
+                bookAuthorIds = []
+                for author in bookAuthors.split(','):
+                    if len(author.strip()) == 0:
+                        continue
+                    data = sqlite_utils.findAuthor(con, author.strip())
+                    if data != None and len(data) > 0:
+                        for elem in data:
+                            bookAuthorIds.append(elem[0])
+                if len(bookAuthorIds) == 0:
+                    break
+
+                # store
                 bookId = sqlite_utils.insertBook(con, origBookTitle, origBookLang, values[const.KEY_BOOK_PUBL_DATE].strip(),
                             values[const.KEY_BOOK_GENRE].strip(), values[const.KEY_BOOK_NOTE].strip())
                 sqlite_utils.insertBookNames(con, bookId, bookNames)
                 sqlite_utils.insertBookReaded(con, bookId, bookLang, values[const.KEY_BOOK_READ_DATE].strip(),
                             values[const.KEY_BOOK_MEDIUM].strip(), values[const.KEY_BOOK_SCORE].strip())
-                #  get authors
-                bookAuthors = values[const.KEY_BOOK_AUTHORS]
-                bookAuthorIds = []
-                for author in bookAuthors.split(','):
-                    data = sqlite_utils.findAuthor(con, author.strip())
-                    if data != None and len(data) > 0:
-                        for elem in data:
-                            bookAuthorIds.append(elem[0])
                 # store authors
                 sqlite_utils.insertBookAuthors(con, bookId, bookAuthorIds)
                 con.commit()
