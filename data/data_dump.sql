@@ -773,6 +773,12 @@ INSERT INTO "author" VALUES(1826,'Бєляєв, Олександр','ru','https:
 INSERT INTO "author" VALUES(1827,'Владко, Володимир Миколайович','uk','https://uk.wikipedia.org/wiki/Владко_Володимир_Миколайович');
 INSERT INTO "author" VALUES(1828,'Schröder, Martin','de','https://de.wikipedia.org/wiki/Martin_Schröder_(Soziologe)');
 INSERT INTO "author" VALUES(1830,'Thúy, Kim','fr','https://en.wikipedia.org/wiki/Kim_Thúy');
+INSERT INTO "author" VALUES(1831,'Schirach, Ferdinand von','de','https://de.wikipedia.org/wiki/Ferdinand_von_Schirach');
+INSERT INTO "author" VALUES(1832,'Lippincott, Rachael','en','https://en.wikipedia.org/wiki/Rachael_Lippincott');
+INSERT INTO "author" VALUES(1833,'Remarque, Erich Maria','de','https://de.wikipedia.org/wiki/Erich_Maria_Remarque');
+INSERT INTO "author" VALUES(1834,'Wheelan, Charles','en','https://en.wikipedia.org/wiki/Charles_Wheelan');
+INSERT INTO "author" VALUES(1835,'Stuckrad-Barre, Benjamin von','de','https://de.wikipedia.org/wiki/Benjamin_von_Stuckrad-Barre');
+INSERT INTO "author" VALUES(1836,'Pilskog, Sturla','no','');
 CREATE TABLE "author_book" (
 	"author_id"	INTEGER NOT NULL,
 	"book_id"	INTEGER NOT NULL,
@@ -1093,7 +1099,6 @@ INSERT INTO "author_book" VALUES(1146,718);
 INSERT INTO "author_book" VALUES(1146,719);
 INSERT INTO "author_book" VALUES(1146,720);
 INSERT INTO "author_book" VALUES(1146,721);
-INSERT INTO "author_book" VALUES(1146,722);
 INSERT INTO "author_book" VALUES(1424,864);
 INSERT INTO "author_book" VALUES(1146,1079);
 INSERT INTO "author_book" VALUES(1541,1117);
@@ -1887,7 +1892,6 @@ INSERT INTO "author_book" VALUES(1353,813);
 INSERT INTO "author_book" VALUES(1353,815);
 INSERT INTO "author_book" VALUES(1353,816);
 INSERT INTO "author_book" VALUES(1353,817);
-INSERT INTO "author_book" VALUES(1353,818);
 INSERT INTO "author_book" VALUES(1353,819);
 INSERT INTO "author_book" VALUES(1353,820);
 INSERT INTO "author_book" VALUES(1353,821);
@@ -2513,6 +2517,19 @@ INSERT INTO "author_book" VALUES(1535,1690);
 INSERT INTO "author_book" VALUES(1239,1691);
 INSERT INTO "author_book" VALUES(1830,1692);
 INSERT INTO "author_book" VALUES(1535,1693);
+INSERT INTO "author_book" VALUES(1831,1694);
+INSERT INTO "author_book" VALUES(1136,1695);
+INSERT INTO "author_book" VALUES(1239,1696);
+INSERT INTO "author_book" VALUES(1832,1697);
+INSERT INTO "author_book" VALUES(1833,1698);
+INSERT INTO "author_book" VALUES(1834,1699);
+INSERT INTO "author_book" VALUES(1143,1700);
+INSERT INTO "author_book" VALUES(1505,1701);
+INSERT INTO "author_book" VALUES(1769,1702);
+INSERT INTO "author_book" VALUES(1069,1703);
+INSERT INTO "author_book" VALUES(1453,1704);
+INSERT INTO "author_book" VALUES(1835,1705);
+INSERT INTO "author_book" VALUES(1836,1706);
 CREATE TABLE "author_names" (
 	"author_id"	INTEGER NOT NULL,
 	"name"	TEXT NOT NULL,
@@ -4380,6 +4397,18 @@ INSERT INTO "author_names" VALUES(1828,'Martin Schröder',NULL,NULL);
 INSERT INTO "author_names" VALUES(1830,'Thúy, Kim','fr','norm');
 INSERT INTO "author_names" VALUES(1830,'Kim Thúy','fr','nat');
 INSERT INTO "author_names" VALUES(1830,'Thuy, Kim','','');
+INSERT INTO "author_names" VALUES(1831,'Schirach, Ferdinand von','de','norm');
+INSERT INTO "author_names" VALUES(1831,'Ferdinand von Schirach','de','nat');
+INSERT INTO "author_names" VALUES(1832,'Lippincott, Rachael','en','norm');
+INSERT INTO "author_names" VALUES(1832,'Rachael Lippincott','en','nat');
+INSERT INTO "author_names" VALUES(1833,'Remarque, Erich Maria','de','norm');
+INSERT INTO "author_names" VALUES(1833,'Erich Maria Remarque','de','nat');
+INSERT INTO "author_names" VALUES(1834,'Wheelan, Charles','en','norm');
+INSERT INTO "author_names" VALUES(1834,'Charles Wheelan','en','nat');
+INSERT INTO "author_names" VALUES(1835,'Stuckrad-Barre, Benjamin von','de','norm');
+INSERT INTO "author_names" VALUES(1835,'Benjamin von Stuckrad-Barre','de','nat');
+INSERT INTO "author_names" VALUES(1836,'Pilskog, Sturla','da','norm');
+INSERT INTO "author_names" VALUES(1836,'Sturla Pilskog','da','nat');
 CREATE TABLE "book" (
 	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	"title"	TEXT NOT NULL,
@@ -5180,7 +5209,6 @@ INSERT INTO "book" VALUES(718,'Dare','1965','en','Фантастика','Іст�
 INSERT INTO "book" VALUES(719,'Traitor to the Living','1973','en','фантастика; еротика','None');
 INSERT INTO "book" VALUES(720,'The God Business','1954','en','','None');
 INSERT INTO "book" VALUES(721,'Strange Compulsion','1953','en','','None');
-INSERT INTO "book" VALUES(722,'Riverworld','1966','en','','None');
 INSERT INTO "book" VALUES(723,'The Dark World','1946','en','','Генри Каттнер (США 1915-1958)');
 INSERT INTO "book" VALUES(724,'Fury','1947','en','','');
 INSERT INTO "book" VALUES(725,'Housing Problem','1944','en','','Hogben
@@ -5276,7 +5304,6 @@ INSERT INTO "book" VALUES(814,'Restricted Area','1953','en','','оповідан
 INSERT INTO "book" VALUES(815,'Hunting Problem','1955','en','','оповідання');
 INSERT INTO "book" VALUES(816,'Ask a Foolish Question','1953','en','','оповідання');
 INSERT INTO "book" VALUES(817,'Watchbird','1953','en','','оповідання');
-INSERT INTO "book" VALUES(818,'Skulking Permit','1954','en','','оповідання');
 INSERT INTO "book" VALUES(819,'The Necessary Thing','1955','en','','оповідання');
 INSERT INTO "book" VALUES(820,'A Thief in Time','1954','en','','оповідання');
 INSERT INTO "book" VALUES(821,'The Last Weapon','1953','en','','оповідання');
@@ -6257,7 +6284,8 @@ INSERT INTO "book" VALUES(1541,'Juxtaposition','1982','en','фантастика
 https://en.wikipedia.org/wiki/Juxtaposition_(novel)');
 INSERT INTO "book" VALUES(1542,'The Milligan Wars: A True-Story Sequel','1994','en','трилер; психологія; біографія','https://uk.wikipedia.org/wiki/Таємнича_історія_Біллі_Міллігана
 документальний роман про Біллі Міллігана — людину з розладом множинної особистості.');
-INSERT INTO "book" VALUES(1543,'Schlachtschiff Nighthawk - Schatten des Krieges','2023','de','космічна фантастика; інопланетяни; alien-invasion; Military-Science-Fiction','Schlachtschiff Nighthawk #1');
+INSERT INTO "book" VALUES(1543,'Schlachtschiff Nighthawk - Schatten des Krieges','2023','de','космічна фантастика; інопланетяни; alien-invasion; Military-Science-Fiction','Schlachtschiff Nighthawk #1
+26. Jahrhundert');
 INSERT INTO "book" VALUES(1544,'Humalan henki eli juomatapojen tarina','1999','fi','non-fiction; історія; алкоголь','короткий екскурс в історію звичаїв уживання алкоголю');
 INSERT INTO "book" VALUES(1545,'Das Neanderthal-Projekt','2017','de','фантастика; генетичні модифікації людини','оповідання, Das Prequel zum Roman "Neanderthal"
 Zwölf junge Frauen werden auf ein Luxusresort eingeladen. Der sie wurden für ein geheimes Forschungsprojekt gecastet.
@@ -6514,7 +6542,7 @@ INSERT INTO "book" VALUES(1665,'Die dunkle Seite des Gehirns : wie wir unser Unt
 див. також: Kahneman, Daniel "Мислення швидке й повільне"');
 INSERT INTO "book" VALUES(1666,'Манускрипт з вулиці Руської','1979','uk','історична проза','Львів між 1585 - 1611 роками. боротьба православних українців (русинів) проти утисків католицької Польщі.');
 INSERT INTO "book" VALUES(1667,'Neural Search - From Prototype to Production with Jina: Build deep learning–powered search systems','2022','en','non-fiction, machine learning, programming','data vectorization, search in vector space');
-INSERT INTO "book" VALUES(1668,'Ultra Fuckers','2008','en','bizarro fiction, absurdism, satire','Tony з дружиною їдуть до багатого передмістя на вечірку її фірми. Всі будинки і вулиці однакові, вони заблукали. Дружина зникла, виїхати неможливо. Він зустрів японців з гурту Ultra Fuckers і вони нищать все навкруги. 
+INSERT INTO "book" VALUES(1668,'The Ultra Fuckers','2008','en','bizarro fiction, absurdism, satire','Tony з дружиною їдуть до багатого передмістя на вечірку її фірми. Всі будинки і вулиці однакові, вони заблукали. Дружина зникла, виїхати неможливо. Він зустрів японців з гурту Ultra Fuckers і вони нищать все навкруги. 
 Виявилося, що все автоматизовано забудовується такими передмістями, знищується і знову забудовується.');
 INSERT INTO "book" VALUES(1669,'The Baby Jesus Butt Plug','2004','en','bizarro fiction, absurdism, satire','');
 INSERT INTO "book" VALUES(1670,'Ноїв ковчег дурнів','2013','uk','','як бути успішною людиною, як стати щасливою людиною.');
@@ -6560,12 +6588,33 @@ INSERT INTO "book" VALUES(1688,'The Cannibals of Candyland','2009','en','absurdi
 Одного разу його спасає жінка-людоїдка Jujy і він живе як її чоловік серед цукрових людоїдів. В кінці в них наджується дитина, а їх обох вбиває поліція.');
 INSERT INTO "book" VALUES(1689,'Wann sind wir wirklich zufrieden? Überraschende Erkenntnisse zu Arbeit, Liebe, Kindern, Geld.','2020','de','non-fiction; sociology; statistics','');
 INSERT INTO "book" VALUES(1690,'Важка чоловіча робота','2012','uk','містика','кореспондент Олександр вирушає з копачами (чорними археологами і характерниками) Володимиром і Юрієм в експедицію кораблем від Києва до Чорного моря. Дорогою трапляється багато дивного і містичного. Доводиться навіть воювати. Їх супроводжує приваблива дівчина Олена. Згодом зʼясовується, що Юрію майже 400 років, Володимиру - 115, Олена теж жила в часи Богдана Хмельницького.');
-INSERT INTO "book" VALUES(1691,'Schlachtschiff Nighthawk: Schlacht um Dawn','2023','de','космічна фантастика; інопланетяни; alien-invasion; Military-Science-Fiction','Schlachtschiff Nighthawk #2');
+INSERT INTO "book" VALUES(1691,'Schlachtschiff Nighthawk: Schlacht um Dawn','2023','de','космічна фантастика; інопланетяни; alien-invasion; Military-Science-Fiction','Schlachtschiff Nighthawk #2
+26. Jahrhundert');
 INSERT INTO "book" VALUES(1692,'Ru','2009','uk','автобіографічна; В’єтнам','https://en.wikipedia.org/wiki/Ru_(novel)');
 INSERT INTO "book" VALUES(1693,'Три тисячі смертей','2005','uk','thriller; бойовик','три повісті про найманця Дізфайндера.
 Шістнадцята голова гідри - Дізфайндер та інші викрадають ядерну боєголовку в Росії
 Три тисячі смертей - Дізфайндер на Полтавщині в пошуках капсули з супутника-шпіона
 Ти мій - смерть безсмертного Дізфайндера');
+INSERT INTO "book" VALUES(1694,'Schuld','2010','de','','https://de.wikipedia.org/wiki/Schuld_(Buch_von_Ferdinand_von_Schirach)');
+INSERT INTO "book" VALUES(1695,'Il nome della rosa','1980','it','історична проза; детектив','https://uk.wikipedia.org/wiki/Ім''я_рози
+1327 рік, італійський монастир');
+INSERT INTO "book" VALUES(1696,'Schlachtschiff Nighthawk: Black Horizon','2023','de','космічна фантастика; інопланетяни; alien-invasion; Military-Science-Fiction','Schlachtschiff Nighthawk #3
+26. Jahrhundert');
+INSERT INTO "book" VALUES(1697,'Five Feet Apart','2018','en','romantic drama; film novelization; хвороба легень','https://uk.wikipedia.org/wiki/За_крок_один_від_одного');
+INSERT INTO "book" VALUES(1698,'Drei Kameraden','1938','de','','https://uk.wikipedia.org/wiki/Три_товариші_(роман)');
+INSERT INTO "book" VALUES(1699,'Naked economics. Undressing the Dismal Science','2002','en','non-fiction; economics; USA','https://en.wikipedia.org/wiki/Naked_Economics');
+INSERT INTO "book" VALUES(1700,'ZAP - Für die einen ist es Vergnügen Für ihn ein Albtraum','2023','de','thriller','Finn ist gerade erst mit seiner Familie umgezogen.
+Doch als er von der Schule nach Hause kommt und in ihrer Wohnung fremde Möbel und Menschen vorfindet, wünscht er sich schnell sein langweiliges Leben zurück.
+Lea erzählt Finn, dass ein gnadenloses Spiel mit ihm gespielt wird. Er wird ausgetrikst und das ganze im TV gezeigt wird.');
+INSERT INTO "book" VALUES(1701,'Нові Темні Віки. Колонія','2022','uk','22 століття, Земля, Марс, пандемія, глобальне потепління, війна','https://uk.wikipedia.org/wiki/Колонія_(роман_Кідрука)
+2141-2142 роки, Земля, Марс, пандемія, екологічні катастрофи, війни');
+INSERT INTO "book" VALUES(1702,'Eg er ein annan. Septologien III–V','2021','no','','Асле - художник, його дружина померла і він розповідає про своє теперішнє і згадує дитинство, підліткові роки, молодість');
+INSERT INTO "book" VALUES(1703,'The Death Dealers','1958','en','детектив; хімія','https://uk.wikipedia.org/wiki/Подих_смерті');
+INSERT INTO "book" VALUES(1704,'Ласкаво просимо в Щуроград','1992','uk','антиутопія','Марко Пекельний в Щурограді брав участь в повстанні людей проти щурів які хотіли асимілювати людей.
+За щурами проглядаються москалі');
+INSERT INTO "book" VALUES(1705,'Noch wach?','2023','de','автобіографічний; сексуальні домаганя; #MeToo','https://de.wikipedia.org/wiki/Noch_wach%3F
+про сексуальні домаганя головного редактора бульварної газети Bild Юліана Райхельта (Julian Reichelt) до підлеглих працівниць. Німецька частина #MeToo.');
+INSERT INTO "book" VALUES(1706,'Penis. En håndbok','2020','no','non-fiction; фізіологія людини','простою моваю про фізіологію чоловічих статевих органів');
 CREATE TABLE "book_names" (
 	"id"	INTEGER NOT NULL,
 	"book_id"	INTEGER NOT NULL,
@@ -7076,7 +7125,7 @@ INSERT INTO "book_names" VALUES(500,504,'Die Iteration','de','96739228',NULL);
 INSERT INTO "book_names" VALUES(501,505,'Tod und Teufel','de','68145','/s/Schätzing, Frank/de/Schätzing, Frank - Tod und Teufel.pdf');
 INSERT INTO "book_names" VALUES(502,506,'Miss Merkel - Mord in der Uckermark','de','56786893','/s/Safir, David/de/Miss Merkel - Mord in der Uckermark [2021] (Safier, David).epub');
 INSERT INTO "book_names" VALUES(503,507,'Schattenwelten - Mars Ultor, Band 1','de','54497797',NULL);
-INSERT INTO "book_names" VALUES(504,508,'Origin','de',NULL,NULL);
+INSERT INTO "book_names" VALUES(504,508,'Origin','de','32715558',NULL);
 INSERT INTO "book_names" VALUES(505,509,'Artificial Intelligence Machine Learning and Deep Learning','en','53985413',NULL);
 INSERT INTO "book_names" VALUES(506,510,'Das letzte Spiel','de','57318211',NULL);
 INSERT INTO "book_names" VALUES(507,511,'Der neunte Arm des Oktopus','de','55919178','/r/Rossmann, Dirk/de/Der neunte Arm des Oktopus (Rossmann, Dirk).epub');
@@ -7286,7 +7335,6 @@ INSERT INTO "book_names" VALUES(711,718,'Дейр','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(712,719,'Там, по ту сторону','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(713,720,'Божье дело','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(714,721,'Чуждое принуждение','ru',NULL,NULL);
-INSERT INTO "book_names" VALUES(715,722,'Мир реки','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(716,723,'Мир тьмы','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(717,724,'Ярость','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(718,725,'Жылищьный вопрос','ru',NULL,NULL);
@@ -7377,7 +7425,6 @@ INSERT INTO "book_names" VALUES(802,814,'Заповедная зона','ru',NUL
 INSERT INTO "book_names" VALUES(803,815,'Охота','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(804,816,'Верный вопрос','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(805,817,'Страж-птица','ru',NULL,NULL);
-INSERT INTO "book_names" VALUES(806,818,'Ордер на убийство','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(807,819,'Необходимая вещь','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(808,820,'Вор во времени','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(809,821,'Абсолютное оружие','ru',NULL,NULL);
@@ -7434,12 +7481,12 @@ INSERT INTO "book_names" VALUES(859,873,'Напередодні армагедо
 INSERT INTO "book_names" VALUES(860,874,'Я, мій чорт і ...','uk','29557452','/_ukr/а/Авраменко, Олег/chort.fb2.zip');
 INSERT INTO "book_names" VALUES(861,875,'Рівне/Ровно','uk','12566823','/_ukr/і/Ірванець, Олександр/Rivne_Rovno.fb2.zip');
 INSERT INTO "book_names" VALUES(862,876,'П''єси','uk',NULL,NULL);
-INSERT INTO "book_names" VALUES(863,877,'Іван Іванович','uk',NULL,'/_ukr/х/Хвильовий, Микола/Ivan_Ivanovych.fb2.zip');
-INSERT INTO "book_names" VALUES(864,878,'Кіт у чоботях','uk',NULL,'/_ukr/х/Хвильовий, Микола/Kit_u_chobotiakh.fb2.zip');
+INSERT INTO "book_names" VALUES(863,877,'Іван Іванович','uk','177236764','/_ukr/х/Хвильовий, Микола/Ivan_Ivanovych.fb2.zip');
+INSERT INTO "book_names" VALUES(864,878,'Кіт у чоботях','uk','177921426','/_ukr/х/Хвильовий, Микола/Kit_u_chobotiakh.fb2.zip');
 INSERT INTO "book_names" VALUES(865,879,'Мати','uk','56764889',NULL);
 INSERT INTO "book_names" VALUES(866,880,'Солонський яр','uk',NULL,NULL);
 INSERT INTO "book_names" VALUES(867,881,'Вальдшнепи','uk','58491998','/_ukr/х/Хвильовий, Микола/Valdshnepy.fb2.zip');
-INSERT INTO "book_names" VALUES(868,882,'Я (романтика)','uk',NULL,'/_ukr/х/Хвильовий, Микола/Ya_Romantyka.fb2.zip');
+INSERT INTO "book_names" VALUES(868,882,'Я (романтика)','uk','69003795','/_ukr/х/Хвильовий, Микола/Ya_Romantyka.fb2.zip');
 INSERT INTO "book_names" VALUES(869,883,'Іван','uk',NULL,NULL);
 INSERT INTO "book_names" VALUES(870,884,'Цветы для Элджернона','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(871,885,'Цветы тюрьмы Аулит','ru',NULL,NULL);
@@ -7786,7 +7833,6 @@ INSERT INTO "book_names" VALUES(1214,718,'Dare','en','2366948','/f/Farmer, Phili
 INSERT INTO "book_names" VALUES(1215,719,'Traitor to the Living','en','722534','/f/Farmer, Philip José/en/Philip Jose Farmer - Traitor to the Living.pdf');
 INSERT INTO "book_names" VALUES(1216,720,'The God Business','en','23015054',NULL);
 INSERT INTO "book_names" VALUES(1217,721,'Strange Compulsion','en','48734256','/f/Farmer, Philip José/en/Strange Relations (omnibus) by Farmer Philip Jose (en).epub');
-INSERT INTO "book_names" VALUES(1218,722,'Riverworld','en',NULL,'/f/Farmer, Philip José/en/Philip Jose Farmer - Riverworld 5  - Gods of Riverworld.pdf');
 INSERT INTO "book_names" VALUES(1219,1205,'High-Rise','en',NULL,'/b/Ballard, James Graham/en/High Rise by J. G. Ballard (en).epub');
 INSERT INTO "book_names" VALUES(1220,1203,'Needful things','en',NULL,'/k/King, Stephen/en/Needful Things by King Stephen (en).epub');
 INSERT INTO "book_names" VALUES(1221,1219,'Париж двадцятого століття','uk','44087546','/v/Verne, Jules/uk/Paryzh_dvadtsiatoho_stolittia.fb2.zip');
@@ -8192,7 +8238,7 @@ INSERT INTO "book_names" VALUES(1622,855,'Von Mauern umgeben','de',NULL,'/g/Gunn
 INSERT INTO "book_names" VALUES(1623,1265,'Magie der Sehnsucht','de','2165219',NULL);
 INSERT INTO "book_names" VALUES(1624,1265,'Fantasy Lover','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1625,1266,'Der Fall des Präsidenten','de','56444126','/e/Elsberg, Marc/de/Der Fall des Präsidenten (Elsberg, Marc) (de).epub');
-INSERT INTO "book_names" VALUES(1626,1267,'Алхимик','ru',NULL,NULL);
+INSERT INTO "book_names" VALUES(1626,1267,'Алхимик','ru','',NULL);
 INSERT INTO "book_names" VALUES(1627,1267,'O Alquimista','pt',NULL,NULL);
 INSERT INTO "book_names" VALUES(1628,1268,'Aurora erwacht','de','55761295','/k/Kristoﬀ, Jay/de/Aurora erwacht (Amie Kaufman & Jay Kristoff).epub');
 INSERT INTO "book_names" VALUES(1629,1268,'Aurora Rising','en',NULL,'/k/Kristoﬀ, Jay/en/Aurora Rising (Amie Kaufman, Jay Kristoff).epub');
@@ -8322,7 +8368,6 @@ INSERT INTO "book_names" VALUES(1753,813,'The Prize of Peril','en',NULL,'/s/Shec
 INSERT INTO "book_names" VALUES(1754,815,'Hunting Problem','en',NULL,'/s/Sheckley, Robert/en/Robert Sheckley - Hunting Problem.pdf');
 INSERT INTO "book_names" VALUES(1755,816,'Ask a Foolish Question','en',NULL,'/s/Sheckley, Robert/en/Ask a foolish question.txt');
 INSERT INTO "book_names" VALUES(1756,817,'Watchbird','en',NULL,NULL);
-INSERT INTO "book_names" VALUES(1757,818,'Skulking Permit','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1758,819,'The Necessary Thing','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1759,820,'A Thief in Time','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1760,821,'The Last Weapon','en',NULL,NULL);
@@ -8729,7 +8774,7 @@ INSERT INTO "book_names" VALUES(2163,795,'Чи мріють андроїди п�
 INSERT INTO "book_names" VALUES(2164,1494,'Ich, der letzte Mensch','de','11314825','/m/Matheson, Richard/de/Matheson, Richard - Ich, der letzte Mensch v3.html');
 INSERT INTO "book_names" VALUES(2165,1494,'I Am Legend','en',NULL,'/m/Matheson, Richard/en/I Am Legend by Richard Matheson (en).epub');
 INSERT INTO "book_names" VALUES(2166,1495,'Дракула','ru',NULL,NULL);
-INSERT INTO "book_names" VALUES(2167,1495,'Dracula','en',NULL,NULL);
+INSERT INTO "book_names" VALUES(2167,1495,'Dracula','en','17238',NULL);
 INSERT INTO "book_names" VALUES(2168,1496,'Adolf im Wunderland','de','2455394','/m/Mellick III, Carlton/de/Adolf im Wunderland (Mellick III, Carlton).epub');
 INSERT INTO "book_names" VALUES(2169,1496,'Adolf in Wonderland','en','2455394',NULL);
 INSERT INTO "book_names" VALUES(2170,1497,'Cytonic - Unendlich weit von Zuhause','de','60745246','/s/Sanderson, Brandon/de/Cytonic - Unendlich weit von Zuhause (Claim the Stars 03) (Brandon Sanderson) (de).epub');
@@ -8991,32 +9036,32 @@ INSERT INTO "book_names" VALUES(2425,1657,'Start With Why: How Great Leaders Ins
 INSERT INTO "book_names" VALUES(2426,1658,'Сьомга','uk','53118358','/_ukr/а/Андрухович, Софія/Сьомга (Андрухович Софія).epub');
 INSERT INTO "book_names" VALUES(2427,1659,'Кульбабове вино','uk','17376056','/b/Bradbury, Ray/uk/Kulbabove_vyno.fb2.zip');
 INSERT INTO "book_names" VALUES(2428,1659,'Dandelion Wine','en',NULL,'/b/Bradbury, Ray/en/Dandelion Wine by Ray Bradbury (en).epub');
-INSERT INTO "book_names" VALUES(2429,1660,'Im Herzen des Imperiums','de',NULL,'/m/Martine, Arkady/de/Im Herzen des Imperiums (Martine Arkady) (de).epub');
+INSERT INTO "book_names" VALUES(2429,1660,'Im Herzen des Imperiums','de','50803719','/m/Martine, Arkady/de/Im Herzen des Imperiums (Martine Arkady) (de).epub');
 INSERT INTO "book_names" VALUES(2430,1660,'A Memory Called Empire','en',NULL,'/m/Martine, Arkady/en/A Memory Called Empire by Arkady Martine (en).epub');
-INSERT INTO "book_names" VALUES(2431,1661,'Träumen','de',NULL,'/k/Knausgard, Karl Ove/de/Träumen (Knausgård, Karl Ove).epub');
+INSERT INTO "book_names" VALUES(2431,1661,'Träumen','de','25509638','/k/Knausgard, Karl Ove/de/Träumen (Knausgård, Karl Ove).epub');
 INSERT INTO "book_names" VALUES(2432,1661,'Min kamp. Femte bok.','no',NULL,NULL);
 INSERT INTO "book_names" VALUES(2433,1662,'TelePresence','en',NULL,NULL);
-INSERT INTO "book_names" VALUES(2434,1663,'Зірка для тебе','uk',NULL,'/_ukr/к/Корній, Дара/Zirka_dlia_tebe.fb2.zip');
-INSERT INTO "book_names" VALUES(2435,1664,'Книга Пожежі. 1914 - 1922','uk',NULL,'/_ukr/л/Литовченко, Тимур/Від війни до війни - Книга Пожежі (Олена і Тимур Литовченки).epub');
-INSERT INTO "book_names" VALUES(2436,1665,'Die dunkle Seite des Gehirns : wie wir unser Unterbewusstes überlisten und negative Gedankenschleifen ausschalten','de',NULL,NULL);
-INSERT INTO "book_names" VALUES(2437,1666,'Манускрипт з вулиці Руської','uk',NULL,'/_ukr/і/Іваничук, Роман/Манускрипт з вулиці Руської (Роман Іваничук).fb2.zip');
-INSERT INTO "book_names" VALUES(2438,1667,'Neural Search - From Prototype to Production with Jina: Build deep learning–powered search systems','en',NULL,'/w/Wang, Bo/en/Neural Search - From Prototype to Production with Jina_ Build deep learning–powered search systems (Bo Wang, Cristian Mitroi, Feng Wang, Shubham Saboo, Susana Guzman).epub');
-INSERT INTO "book_names" VALUES(2439,1668,'Ultra Fuckers','de',NULL,'/m/Mellick III, Carlton/de/Ultra Fuckers (Carlton Mellick III) (de).epub');
-INSERT INTO "book_names" VALUES(2440,1668,'Ultra Fuckers','en',NULL,NULL);
-INSERT INTO "book_names" VALUES(2441,1669,'Der Baby-Jesus-Anal-Plug','de',NULL,'/m/Mellick III, Carlton/de/Der Baby-Jesus-Anal-Plug (Mellick III, Carlton).epub');
+INSERT INTO "book_names" VALUES(2434,1663,'Зірка для тебе','uk','21974126','/_ukr/к/Корній, Дара/Zirka_dlia_tebe.fb2.zip');
+INSERT INTO "book_names" VALUES(2435,1664,'Книга Пожежі. 1914 - 1922','uk','42025210','/_ukr/л/Литовченко, Тимур/Від війни до війни - Книга Пожежі (Олена і Тимур Литовченки).epub');
+INSERT INTO "book_names" VALUES(2436,1665,'Die dunkle Seite des Gehirns : wie wir unser Unterbewusstes überlisten und negative Gedankenschleifen ausschalten','de','63846631',NULL);
+INSERT INTO "book_names" VALUES(2437,1666,'Манускрипт з вулиці Руської','uk','21802195','/_ukr/і/Іваничук, Роман/Манускрипт з вулиці Руської (Роман Іваничук).fb2.zip');
+INSERT INTO "book_names" VALUES(2438,1667,'Neural Search - From Prototype to Production with Jina: Build deep learning–powered search systems','en','65148484','/w/Wang, Bo/en/Neural Search - From Prototype to Production with Jina_ Build deep learning–powered search systems (Bo Wang, Cristian Mitroi, Feng Wang, Shubham Saboo, Susana Guzman).epub');
+INSERT INTO "book_names" VALUES(2439,1668,'Ultra Fuckers','de','12364219','/m/Mellick III, Carlton/de/Ultra Fuckers (Carlton Mellick III) (de).epub');
+INSERT INTO "book_names" VALUES(2440,1668,'The Ultra Fuckers','en',NULL,NULL);
+INSERT INTO "book_names" VALUES(2441,1669,'Der Baby-Jesus-Anal-Plug','de','14287794','/m/Mellick III, Carlton/de/Der Baby-Jesus-Anal-Plug (Mellick III, Carlton).epub');
 INSERT INTO "book_names" VALUES(2442,1669,'The Baby Jesus Butt Plug','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(2443,1670,'Ноїв ковчег дурнів','uk',NULL,'/_ukr/м/Масляк, Петро/Nojiv_kovcheg_durniv.fb2');
-INSERT INTO "book_names" VALUES(2444,1671,'Тінь попередника','uk',NULL,'/_ukr/є/Єшкілєв, Володимир/Tin_poperednyka.fb2.zip');
+INSERT INTO "book_names" VALUES(2444,1671,'Тінь попередника','uk','43361569','/_ukr/є/Єшкілєв, Володимир/Tin_poperednyka.fb2.zip');
 INSERT INTO "book_names" VALUES(2445,1672,'Das kleine Schloss in Schottland','de','199693421','/c/Caplin, Julie/de/Romantic Escapes 09 - Das kleine Schloss in Schottland (Julie Caplin) [2023].epub');
 INSERT INTO "book_names" VALUES(2446,1672,'The Christmas Castle in Scotland','en',NULL,'/c/Caplin, Julie/en/Romantic Escapes 09 - The Christmas Castle in Scotland (Julie Caplin) [2022].epub');
-INSERT INTO "book_names" VALUES(2447,1673,'Війна лайків. Зброя в руках соціальних мереж','uk',NULL,'/b/Brooking, Emerson/uk/Війна лайків. Зброя в руках соціальних мереж (Emerson T. Brooking) (uk).fb2.zip');
+INSERT INTO "book_names" VALUES(2447,1673,'Війна лайків. Зброя в руках соціальних мереж','uk','48946301','/b/Brooking, Emerson/uk/Війна лайків. Зброя в руках соціальних мереж (Emerson T. Brooking) (uk).fb2.zip');
 INSERT INTO "book_names" VALUES(2448,1673,'LikeWar: The Weaponization of Social Media','en',NULL,'/b/Brooking, Emerson/en/LikeWar The Weaponization of Social Media (P. W. Singer, Emerson T. Brooking) (en).epub');
-INSERT INTO "book_names" VALUES(2449,1674,'Masters of Deception','de',NULL,'/s/Slatalla, Michele/de/Masters of Deception (Slatalla, Michele).epub');
+INSERT INTO "book_names" VALUES(2449,1674,'Masters of Deception','de','7322328','/s/Slatalla, Michele/de/Masters of Deception (Slatalla, Michele).epub');
 INSERT INTO "book_names" VALUES(2450,1674,'Masters of Deception','en',NULL,NULL);
-INSERT INTO "book_names" VALUES(2451,1675,'Dürre','de',NULL,NULL);
+INSERT INTO "book_names" VALUES(2451,1675,'Dürre','de','58951358',NULL);
 INSERT INTO "book_names" VALUES(2452,1676,'Український портал','uk',NULL,'/_ukr/м/Масляк, Петро/Ukrajinskyj_portal.fb2');
 INSERT INTO "book_names" VALUES(2453,1677,'Таємниці, загадки, феномени і дива України','uk',NULL,'/_ukr/м/Масляк, Петро/Taiemnytsi_zahadky_fenomeny_i_dyva_Ukrainy.fb2.zip');
-INSERT INTO "book_names" VALUES(2454,1678,'Der andere Name. Heptalogie I-II','de',NULL,NULL);
+INSERT INTO "book_names" VALUES(2454,1678,'Der andere Name. Heptalogie I-II','de','48507070',NULL);
 INSERT INTO "book_names" VALUES(2455,1678,'Det andre namnet. Septologien I-II','no',NULL,NULL);
 INSERT INTO "book_names" VALUES(2456,1679,'Сповідь українського шахрая','uk',NULL,NULL);
 INSERT INTO "book_names" VALUES(2457,1680,'Чорнобильський синдром','uk',NULL,NULL);
@@ -9026,12 +9071,12 @@ INSERT INTO "book_names" VALUES(2460,1682,'Голова профессора Д�
 INSERT INTO "book_names" VALUES(2461,1683,'Нащадки скіфів','uk','62618531','/_ukr/в/Владко, Володимир/Naschadky_skifiv_vyd1962.fb2.zip');
 INSERT INTO "book_names" VALUES(2462,1684,'Сивий капітан','uk','43203479','/_ukr/в/Владко, Володимир/Syvyi_Kapitan.fb2.zip');
 INSERT INTO "book_names" VALUES(2463,1685,'Аргонавти Всесвіту','uk','39828307','/_ukr/в/Владко, Володимир/Arhonavty_Vsesvitu.vyd1974.fb2.zip');
-INSERT INTO "book_names" VALUES(2464,1686,'Sturm','de',NULL,NULL);
-INSERT INTO "book_names" VALUES(2465,1687,'Господиня','uk',NULL,'/m/Meyer, Stephenie/uk/Hospodynia.fb2.zip');
+INSERT INTO "book_names" VALUES(2464,1686,'Sturm','de','38203550',NULL);
+INSERT INTO "book_names" VALUES(2465,1687,'Господиня','uk','17735750','/m/Meyer, Stephenie/uk/Hospodynia.fb2.zip');
 INSERT INTO "book_names" VALUES(2466,1687,'The Host','en',NULL,'/m/Meyer, Stephenie/en/The Host by Stephenie Meyer (en).epub');
-INSERT INTO "book_names" VALUES(2467,1688,'Die Kannibalen von Candyland','de',NULL,'/m/Mellick III, Carlton/de/Die Kannibalen von Candyland (Carlton Mellick III).epub');
+INSERT INTO "book_names" VALUES(2467,1688,'Die Kannibalen von Candyland','de','9523251','/m/Mellick III, Carlton/de/Die Kannibalen von Candyland (Carlton Mellick III).epub');
 INSERT INTO "book_names" VALUES(2468,1688,'The Cannibals of Candyland','en',NULL,'/m/Mellick III, Carlton/en/The Cannibals of Candyland (Carlton Mellick III) (en).epub');
-INSERT INTO "book_names" VALUES(2469,1689,'Wann sind wir wirklich zufrieden? Überraschende Erkenntnisse zu Arbeit, Liebe, Kindern, Geld.','de',NULL,'/s/Schröder, Martin/de/Wann sind wir wirklich zufrieden (Martin Schröder) [2020].epub');
+INSERT INTO "book_names" VALUES(2469,1689,'Wann sind wir wirklich zufrieden? Überraschende Erkenntnisse zu Arbeit, Liebe, Kindern, Geld.','de','52419870','/s/Schröder, Martin/de/Wann sind wir wirklich zufrieden (Martin Schröder) [2020].epub');
 INSERT INTO "book_names" VALUES(2470,1690,'Важка чоловіча робота','uk',NULL,'/_ukr/р/Радутний, Радій/Важка чоловіча робота (Радій Радутний).fb2.zip');
 INSERT INTO "book_names" VALUES(2471,377,'The Hot Zone: The Terrifying True Story of the Origins of the Ebola Virus','en','16213','');
 INSERT INTO "book_names" VALUES(2472,1691,'Schlachtschiff Nighthawk: Schlacht um Dawn','de','131657833','/l/Leibig, Timo/de/Schlachtschiff Nighthawk Schlacht um Dawn (Timo Leibig) [2023].epub');
@@ -9041,6 +9086,30 @@ INSERT INTO "book_names" VALUES(2475,648,'Falsch korrigiert','de','36489985','')
 INSERT INTO "book_names" VALUES(2476,402,'The Cosmic Puppets','en','14187','');
 INSERT INTO "book_names" VALUES(2477,536,'Landslide: The Final Days of the Trump Presidency','en','','');
 INSERT INTO "book_names" VALUES(2478,1693,'Три тисячі смертей','uk',NULL,NULL);
+INSERT INTO "book_names" VALUES(2479,1694,'Schuld','de','8846471',NULL);
+INSERT INTO "book_names" VALUES(2480,1695,'Ім''я рози','uk','21526907',NULL);
+INSERT INTO "book_names" VALUES(2481,1695,'Il nome della rosa','it',NULL,NULL);
+INSERT INTO "book_names" VALUES(2482,1696,'Schlachtschiff Nighthawk: Black Horizon','de',NULL,NULL);
+INSERT INTO "book_names" VALUES(2483,1697,'За п''ять кроків до кохання','uk','45273365',NULL);
+INSERT INTO "book_names" VALUES(2484,1697,'Five Feet Apart','en',NULL,NULL);
+INSERT INTO "book_names" VALUES(2485,1698,'Три товариші','uk','17911784',NULL);
+INSERT INTO "book_names" VALUES(2486,1698,'Drei Kameraden','de',NULL,NULL);
+INSERT INTO "book_names" VALUES(2487,1699,'Гола економіка. Викриття нудної науки','uk','39979637',NULL);
+INSERT INTO "book_names" VALUES(2488,1699,'Naked economics. Undressing the Dismal Science','en',NULL,NULL);
+INSERT INTO "book_names" VALUES(2489,1700,'ZAP - Für die einen ist es Vergnügen Für ihn ein Albtraum','de','142047073',NULL);
+INSERT INTO "book_names" VALUES(2490,1701,'Нові Темні Віки. Колонія','uk','63574057',NULL);
+INSERT INTO "book_names" VALUES(2491,1702,'Ich ist ein anderer. Heptalogie III–V','de','61114382',NULL);
+INSERT INTO "book_names" VALUES(2492,1702,'Eg er ein annan. Septologien III–V','no',NULL,NULL);
+INSERT INTO "book_names" VALUES(2493,1703,'Подих смерті','uk','40737065',NULL);
+INSERT INTO "book_names" VALUES(2494,1703,'The Death Dealers','en',NULL,NULL);
+INSERT INTO "book_names" VALUES(2495,1704,'Ласкаво просимо в Щуроград','uk','17343122',NULL);
+INSERT INTO "book_names" VALUES(2496,1269,'Джонатан Лівінгстон, мартин','uk','28762373','');
+INSERT INTO "book_names" VALUES(2497,1267,'Алхімік','uk','18047999','');
+INSERT INTO "book_names" VALUES(2498,1277,'Мир реки','ru','','');
+INSERT INTO "book_names" VALUES(2499,241,'Ордер на убийство','ru','','');
+INSERT INTO "book_names" VALUES(2500,1705,'Noch wach?','de','63217738',NULL);
+INSERT INTO "book_names" VALUES(2501,1706,'Зовнішня історія. Penis. Керівництво з експлуатації','uk','59833860',NULL);
+INSERT INTO "book_names" VALUES(2502,1706,'Penis. En håndbok','no',NULL,NULL);
 CREATE TABLE "book_readed" (
 	"id"	INTEGER NOT NULL,
 	"book_id"	INTEGER NOT NULL,
@@ -9169,7 +9238,7 @@ INSERT INTO "book_readed" VALUES(114,1192,'2017-02-15','ru','ebook',7,'Жизн�
 INSERT INTO "book_readed" VALUES(115,115,'2017-02-16','ru','ebook',7,'Правда фактов, правда ощущений','');
 INSERT INTO "book_readed" VALUES(116,116,'2017-02-17','uk','сім оповідань',7,'ДНК',NULL);
 INSERT INTO "book_readed" VALUES(117,117,'2017-02-18','de','аудіокнига',7,'Der Roboter der Herzen hören konnte',NULL);
-INSERT INTO "book_readed" VALUES(118,118,'2017-02-19','ru','оповідання',6,'Волновики',NULL);
+INSERT INTO "book_readed" VALUES(118,118,'2017-02-19','ru','ebook',6,'Волновики','оповідання');
 INSERT INTO "book_readed" VALUES(119,119,'2017-02-20','de','аудіокнига',7,'Kill girl',NULL);
 INSERT INTO "book_readed" VALUES(120,120,'2017-02-21','uk','ebook',7,'Забудь-річка','');
 INSERT INTO "book_readed" VALUES(121,121,'2017-02-22','de','аудіокнига',6,'Traumprinz',NULL);
@@ -9775,7 +9844,6 @@ INSERT INTO "book_readed" VALUES(718,718,'2000-03-26','ru','paper','','Дейр'
 INSERT INTO "book_readed" VALUES(719,719,'2000-03-27','ru','paper','','Там, по ту сторону',NULL);
 INSERT INTO "book_readed" VALUES(720,720,'2000-03-28','ru','paper','','Божье дело',NULL);
 INSERT INTO "book_readed" VALUES(721,721,'2000-03-29','ru','paper','','Чуждое принуждение',NULL);
-INSERT INTO "book_readed" VALUES(722,722,'2000-03-30','ru','paper',8,'Мир реки',NULL);
 INSERT INTO "book_readed" VALUES(723,723,'2000-03-31','ru','paper',NULL,'Мир тьмы',NULL);
 INSERT INTO "book_readed" VALUES(724,724,'2000-04-01','ru','paper',NULL,'Ярость',NULL);
 INSERT INTO "book_readed" VALUES(725,725,'2000-04-02','ru','paper','','Жылищьный вопрос','');
@@ -9859,7 +9927,7 @@ INSERT INTO "book_readed" VALUES(802,802,'2000-06-18','ru','paper',NULL,'Про�
 INSERT INTO "book_readed" VALUES(803,803,'2000-06-19','ru','paper',NULL,'Эл Стоу (L 100U)',NULL);
 INSERT INTO "book_readed" VALUES(804,804,'2000-06-20','ru','paper',NULL,'Мы с моей тенью',NULL);
 INSERT INTO "book_readed" VALUES(805,805,'2000-06-21','ru','paper',NULL,'Носитель инфекции',NULL);
-INSERT INTO "book_readed" VALUES(806,806,'2000-06-22','ru','paper',NULL,'Статус – цивилизации',NULL);
+INSERT INTO "book_readed" VALUES(806,806,'2000-06-22','ru','paper',6,'Статус – цивилизации',NULL);
 INSERT INTO "book_readed" VALUES(807,807,'2000-06-23','ru','paper',NULL,'Корпорация “Бессмертие”',NULL);
 INSERT INTO "book_readed" VALUES(808,808,'2000-06-24','ru','paper',NULL,'Билет на планету Транай',NULL);
 INSERT INTO "book_readed" VALUES(809,809,'2000-06-25','ru',NULL,NULL,'Обмен разумов',NULL);
@@ -9871,7 +9939,6 @@ INSERT INTO "book_readed" VALUES(814,814,'2000-06-30','ru','paper','','Запо�
 INSERT INTO "book_readed" VALUES(815,815,'2000-07-01','ru','paper','','Охота','');
 INSERT INTO "book_readed" VALUES(816,816,'2000-07-02','ru','paper','','Верный вопрос','');
 INSERT INTO "book_readed" VALUES(817,817,'2000-07-03','ru','paper','','Страж-птица','');
-INSERT INTO "book_readed" VALUES(818,818,'2000-07-04','ru','paper','','Ордер на убийство','');
 INSERT INTO "book_readed" VALUES(819,819,'2000-07-05','ru','paper','','Необходимая вещь','');
 INSERT INTO "book_readed" VALUES(820,820,'2000-07-06','ru','paper','','Вор во времени','');
 INSERT INTO "book_readed" VALUES(821,821,'2000-07-07','ru','paper','','Абсолютное оружие','');
@@ -10765,14 +10832,29 @@ INSERT INTO "book_readed" VALUES(1724,1692,'2024-04-11','uk','tts',6,NULL,NULL);
 INSERT INTO "book_readed" VALUES(1725,648,'2019-01-26','de','радіопостановка',6,NULL,'Robotergeschichten');
 INSERT INTO "book_readed" VALUES(1726,1693,'2024-04-12','uk','tts',6,NULL,NULL);
 INSERT INTO "book_readed" VALUES(1727,1693,'2007-05-01','uk','paper',6,NULL,'');
+INSERT INTO "book_readed" VALUES(1728,1694,'2024-04-13','de','tts',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1729,1695,'2024-04-14','uk','tts',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1730,1696,'2024-04-17','de','audiobook',7,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1731,1697,'2024-04-17','uk','tts',6,NULL,'почав читати й згадав. що бачив кіно');
+INSERT INTO "book_readed" VALUES(1732,1698,'1996-04-17','uk','paper',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1733,1699,'2024-04-19','uk','tts',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1734,1700,'2024-04-20','de','tts',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1735,1701,'2024-04-25','uk','tts',8,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1736,1702,'2024-04-26','de','audiobook',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1737,1703,'1998-07-01','uk','paper',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1738,1704,'2024-04-27','uk','tts',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1739,1277,'2000-03-30','ru','paper',8,NULL,'');
+INSERT INTO "book_readed" VALUES(1740,241,'2000-07-04','ru','paper',6,NULL,'');
+INSERT INTO "book_readed" VALUES(1741,1705,'2024-04-28','de','audiobook',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1742,1706,'2024-04-29','uk','audiobook',6,NULL,NULL);
 CREATE UNIQUE INDEX "book_name_uk" ON "book_names" (
 	"book_id",
 	"lang",
 	"name"
 );
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('book',1693);
-INSERT INTO "sqlite_sequence" VALUES('author',1830);
-INSERT INTO "sqlite_sequence" VALUES('book_names',2478);
-INSERT INTO "sqlite_sequence" VALUES('book_readed',1727);
+INSERT INTO "sqlite_sequence" VALUES('book',1706);
+INSERT INTO "sqlite_sequence" VALUES('author',1836);
+INSERT INTO "sqlite_sequence" VALUES('book_names',2502);
+INSERT INTO "sqlite_sequence" VALUES('book_readed',1742);
 COMMIT;
