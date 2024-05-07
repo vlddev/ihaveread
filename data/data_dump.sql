@@ -779,6 +779,11 @@ INSERT INTO "author" VALUES(1833,'Remarque, Erich Maria','de','https://de.wikipe
 INSERT INTO "author" VALUES(1834,'Wheelan, Charles','en','https://en.wikipedia.org/wiki/Charles_Wheelan');
 INSERT INTO "author" VALUES(1835,'Stuckrad-Barre, Benjamin von','de','https://de.wikipedia.org/wiki/Benjamin_von_Stuckrad-Barre');
 INSERT INTO "author" VALUES(1836,'Pilskog, Sturla','no','');
+INSERT INTO "author" VALUES(1837,'Aymen El, Amri','en','https://github.com/eon01');
+INSERT INTO "author" VALUES(1838,'Литвин, Ярослава','uk','https://uk.wikipedia.org/wiki/Литвин_Ярослава_Ігорівна');
+INSERT INTO "author" VALUES(1839,'Hystad, Nathan','en','https://www.goodreads.com/author/show/8611363.Nathan_Hystad');
+INSERT INTO "author" VALUES(1840,'Яценко, Петро','uk','https://uk.wikipedia.org/wiki/Яценко_Петро_Олександрович');
+INSERT INTO "author" VALUES(1841,'Durkheim, Émile','fr','https://de.wikipedia.org/wiki/Émile_Durkheim');
 CREATE TABLE "author_book" (
 	"author_id"	INTEGER NOT NULL,
 	"book_id"	INTEGER NOT NULL,
@@ -2530,6 +2535,16 @@ INSERT INTO "author_book" VALUES(1069,1703);
 INSERT INTO "author_book" VALUES(1453,1704);
 INSERT INTO "author_book" VALUES(1835,1705);
 INSERT INTO "author_book" VALUES(1836,1706);
+INSERT INTO "author_book" VALUES(1837,1707);
+INSERT INTO "author_book" VALUES(1143,1708);
+INSERT INTO "author_book" VALUES(1838,1709);
+INSERT INTO "author_book" VALUES(1353,1710);
+INSERT INTO "author_book" VALUES(1353,1711);
+INSERT INTO "author_book" VALUES(1839,1712);
+INSERT INTO "author_book" VALUES(1840,1713);
+INSERT INTO "author_book" VALUES(1841,1714);
+INSERT INTO "author_book" VALUES(1818,1715);
+INSERT INTO "author_book" VALUES(1744,1716);
 CREATE TABLE "author_names" (
 	"author_id"	INTEGER NOT NULL,
 	"name"	TEXT NOT NULL,
@@ -3325,8 +3340,8 @@ INSERT INTO "author_names" VALUES(1352,'Ирвин Шоу',NULL,NULL);
 INSERT INTO "author_names" VALUES(1352,'Шоу, Ирвин',NULL,NULL);
 INSERT INTO "author_names" VALUES(1353,'Robert Sheckley',NULL,NULL);
 INSERT INTO "author_names" VALUES(1353,'Sheckley, Robert',NULL,NULL);
-INSERT INTO "author_names" VALUES(1353,'Роберт Шекли',NULL,NULL);
-INSERT INTO "author_names" VALUES(1353,'Шекли, Роберт',NULL,NULL);
+INSERT INTO "author_names" VALUES(1353,'Роберт Шекли','ru',NULL);
+INSERT INTO "author_names" VALUES(1353,'Шекли, Роберт','ru',NULL);
 INSERT INTO "author_names" VALUES(1354,'Shepard, Lucius',NULL,NULL);
 INSERT INTO "author_names" VALUES(1354,'Люциус Шепард',NULL,NULL);
 INSERT INTO "author_names" VALUES(1354,'Шепард, Люциус',NULL,NULL);
@@ -4409,6 +4424,17 @@ INSERT INTO "author_names" VALUES(1835,'Stuckrad-Barre, Benjamin von','de','norm
 INSERT INTO "author_names" VALUES(1835,'Benjamin von Stuckrad-Barre','de','nat');
 INSERT INTO "author_names" VALUES(1836,'Pilskog, Sturla','da','norm');
 INSERT INTO "author_names" VALUES(1836,'Sturla Pilskog','da','nat');
+INSERT INTO "author_names" VALUES(1837,'Aymen El, Amri','en','norm');
+INSERT INTO "author_names" VALUES(1837,'Amri Aymen El','en','nat');
+INSERT INTO "author_names" VALUES(1838,'Литвин, Ярослава','uk','norm');
+INSERT INTO "author_names" VALUES(1838,'Ярослава Литвин','uk','nat');
+INSERT INTO "author_names" VALUES(1353,'Шеклі, Роберт','uk','');
+INSERT INTO "author_names" VALUES(1839,'Hystad, Nathan','en','norm');
+INSERT INTO "author_names" VALUES(1839,'Nathan Hystad','en','nat');
+INSERT INTO "author_names" VALUES(1840,'Яценко, Петро','uk','norm');
+INSERT INTO "author_names" VALUES(1840,'Петро Яценко','uk','nat');
+INSERT INTO "author_names" VALUES(1841,'Durkheim, Émile','fr','norm');
+INSERT INTO "author_names" VALUES(1841,'Émile Durkheim','fr','nat');
 CREATE TABLE "book" (
 	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	"title"	TEXT NOT NULL,
@@ -5125,7 +5151,7 @@ INSERT INTO "book" VALUES(634,'The Big Front Yard','1958','en','','повіст�
 INSERT INTO "book" VALUES(635,'Immigrant','1954','en','','повість');
 INSERT INTO "book" VALUES(636,'Shadow Show','1953','en','','оповідання');
 INSERT INTO "book" VALUES(637,'The Fellowship of the Talisman','1978','en','фентезі','');
-INSERT INTO "book" VALUES(638,'Кольцо вокруг солнца','1953','en','','None');
+INSERT INTO "book" VALUES(638,'Ring Around the Sun','1952','en','','');
 INSERT INTO "book" VALUES(639,'Desertion','1944','en','','оповідання');
 INSERT INTO "book" VALUES(640,'Star Light','1962','en','','оповідання');
 INSERT INTO "book" VALUES(641,'The Singing Bell','1955','en','','оповідання');
@@ -6615,6 +6641,42 @@ INSERT INTO "book" VALUES(1704,'Ласкаво просимо в Щурогра�
 INSERT INTO "book" VALUES(1705,'Noch wach?','2023','de','автобіографічний; сексуальні домаганя; #MeToo','https://de.wikipedia.org/wiki/Noch_wach%3F
 про сексуальні домаганя головного редактора бульварної газети Bild Юліана Райхельта (Julian Reichelt) до підлеглих працівниць. Німецька частина #MeToo.');
 INSERT INTO "book" VALUES(1706,'Penis. En håndbok','2020','no','non-fiction; фізіологія людини','простою моваю про фізіологію чоловічих статевих органів');
+INSERT INTO "book" VALUES(1707,'OpenAI GPT For Python Developers','2023','en','programming; python; machine-learning; artificial-intelligence','developing intelligent apps with OpenAI GPT-3, DALL·E 2, CLIP, and Whisper');
+INSERT INTO "book" VALUES(1708,'Wie künstlich ist Intelligenz - Science-Fiction-Geschichten','2020','de','фантастика; штучний ітелект','оповідання про штучний ітелект
+Andreas Eschbach · Alles Geld der Welt
+Judith C. Vogt · Ausstieg
+Klaus N. Frick · Der Reigen der Sandteufel
+Stefan Lammers · Johanna
+Jannis Radeleff · Crashtestdummys
+Nele Sickel · Eine völlig legale Kiste
+Carsten Schmitt · Wagners Stimme
+Gundel Limberg · Daheim
+Michael Marrak · Die Sapiens-Integrale');
+INSERT INTO "book" VALUES(1709,'Рік розпусти Клауса Отто Баха','2021','uk','пригоди; Україна; 2010-ті','https://uk.wikipedia.org/wiki/Рік_розпусти_Клауса_Отто_Баха
+пригоди німця Клауса Отто Баха в Україні, де він шукає жінку своєї мрії, з якою познайомився на сайті знайомств');
+INSERT INTO "book" VALUES(1710,'The Accountant','1954','en','гумор; нечиста сила','https://4read.org/3314-shekli-robert-bukhgalter.html
+Син слуги диявола вирішив стати бухгалтером.');
+INSERT INTO "book" VALUES(1711,'Demons','1953','en','гумор; нечиста сила','https://4read.org/3313-shekli-robert-demony.html
+Демон Нельзевул (внук Вельзевула) викликав страхового агента, щоб той достав йому 5 тон золота.
+Той, в свою чергу, викликав іншого демона (страхового агента).
+А той зловив Нельзевула і посадив в пляшку.');
+INSERT INTO "book" VALUES(1712,'Lost Contact','2021','en','трилер; містика; пригоди','Die kosmische Brücke #1 (score=6,5)
+трилер в стилі Дена Брауна
+Біля Плутона до Землі летять невідомі обʼєкти.
+Археолог Rex Walker, батько якого зник коли йому було 4 роки, шукає загадкові позаземні артефакти (шість пластин), які розкидані по всій землі. Разом ці пластини можуть відкрити "Зоряний міст", який має врятувати людство.
+Секта "Віруючих" теж полює на ці артефакти і намагається прибрати всіх конкурентів.');
+INSERT INTO "book" VALUES(1713,'Дерево бодхі. Повернення придурків','2011','uk','absurdism; пригоди; Україна','https://uk.wikipedia.org/wiki/Дерево_бодхі_(книга)
+Дерево бодхі - score 5
+
+Повернення придурків - 6
+ перегукується з Енеїдою, Зевс, Харон, втеча з царства мертвих.');
+INSERT INTO "book" VALUES(1714,'Le Suicide','1897','fr','non-fiction; соціологія','https://ru.wikisource.org/wiki/Самоубийство_(Дюркгейм)/Ильинский_1912_(ДО)
+
+соціологічне і статистичне дослідження причин самогубств
+читав на 4-му курсі в ЦНБ');
+INSERT INTO "book" VALUES(1715,'Time Ablaze','2004','en','фантастика; time travel','Mr. Schmidt з 2004 року попадає в 1904, щоб дослідити пожежу на кораблі "General Slocum" в якій загинуло 1021 людей
+Він винаймає кімнату у матері Adele Weber в общині американських німців. Адель взнає про майбутню катастрофу і намагається попередити людай.');
+INSERT INTO "book" VALUES(1716,'Neanderthal','2017','de','фантастика; генетичні модифікації людини; клонування; триллер; Німеччина','');
 CREATE TABLE "book_names" (
 	"id"	INTEGER NOT NULL,
 	"book_id"	INTEGER NOT NULL,
@@ -7876,7 +7938,7 @@ INSERT INTO "book_names" VALUES(1258,285,'Sphere','en',NULL,'/c/Crichton, Michae
 INSERT INTO "book_names" VALUES(1259,216,'The Genesis Machine','en',NULL,'/h/Hogan, James P/en/The Genesis Machine by Hogan James P (en).epub');
 INSERT INTO "book_names" VALUES(1260,1231,'Nachts im Kanzleramt - Alles, was man schon immer über Politik wissen wollte','de','60772538',NULL);
 INSERT INTO "book_names" VALUES(1261,896,'Kaleidoscope','en','57065515',NULL);
-INSERT INTO "book_names" VALUES(1262,1149,'The Empire of Ice Cream','en',NULL,'/f/Ford, Jeffrey/en/The Empire of Ice Cream by Ford Jeffrey (en).epub');
+INSERT INTO "book_names" VALUES(1262,1149,'The Empire of Ice Cream','en','39747','/f/Ford, Jeffrey/en/The Empire of Ice Cream by Ford Jeffrey (en).epub');
 INSERT INTO "book_names" VALUES(1263,1149,'Империя мороженого','ru',NULL,NULL);
 INSERT INTO "book_names" VALUES(1264,21,'The Erdmann Nexus','en','23574223',NULL);
 INSERT INTO "book_names" VALUES(1265,1232,'Патетичний блуд','uk',NULL,'/_ukr/д/Дністровий, Анатолій/Dnistrovyj - Patetychnyj blud.fb2');
@@ -8085,12 +8147,12 @@ INSERT INTO "book_names" VALUES(1468,696,'Orphans of the Sky','en',NULL,'/h/Hein
 INSERT INTO "book_names" VALUES(1469,697,'Space Cadet','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1470,698,'If This Goes On ...','en',NULL,'/h/Heinlein, Robert/en/Heinlein, Robert A - If This Goes On.txt');
 INSERT INTO "book_names" VALUES(1471,360,'Stranger in a Strange Land','en',NULL,'/h/Heinlein, Robert/en/Stranger in a Strange Land by Robert A. Heinlein (en).epub');
-INSERT INTO "book_names" VALUES(1472,633,'Installment Plan','en',NULL,'/s/Simak, Clifford D/en/Clifford D. Simak - Installment Plan.pdf');
-INSERT INTO "book_names" VALUES(1473,634,'The Big Front Yard','en',NULL,'/s/Simak, Clifford D/en/The Big Front Yard and Other Stories by Simak Clifford D (en).epub');
-INSERT INTO "book_names" VALUES(1474,635,'Immigrant','en',NULL,NULL);
-INSERT INTO "book_names" VALUES(1475,636,'Shadow Show','en',NULL,'/s/Simak, Clifford D/en/Clifford D. Simak - Shadow World.pdf');
-INSERT INTO "book_names" VALUES(1476,637,'The Fellowship of the Talisman','en',NULL,'/s/Simak, Clifford D/en/Clifford D. Simak - The Fellowship of the Talisman.doc');
-INSERT INTO "book_names" VALUES(1477,639,'Desertion','en',NULL,NULL);
+INSERT INTO "book_names" VALUES(1472,633,'Installment Plan','en','39851238','/s/Simak, Clifford D/en/Clifford D. Simak - Installment Plan.pdf');
+INSERT INTO "book_names" VALUES(1473,634,'The Big Front Yard','en','16396737','/s/Simak, Clifford D/en/The Big Front Yard and Other Stories by Simak Clifford D (en).epub');
+INSERT INTO "book_names" VALUES(1474,635,'Immigrant','en','2393496',NULL);
+INSERT INTO "book_names" VALUES(1475,636,'Shadow Show','en','80823489','/s/Simak, Clifford D/en/Clifford D. Simak - Shadow World.pdf');
+INSERT INTO "book_names" VALUES(1476,637,'The Fellowship of the Talisman','en','1161181','/s/Simak, Clifford D/en/Clifford D. Simak - The Fellowship of the Talisman.doc');
+INSERT INTO "book_names" VALUES(1477,639,'Desertion','en','16029136',NULL);
 INSERT INTO "book_names" VALUES(1478,639,'Дезертирство','uk',NULL,NULL);
 INSERT INTO "book_names" VALUES(1479,1244,'Чому нації занепадають? Походження влади, багатства і бідності','uk','31120745','/r/Robinson, James A/uk/Чому нації занепадають (Дарон Аджемоґлу [Daron Acemoglu] etc.).epub');
 INSERT INTO "book_names" VALUES(1480,1244,'Why Nations Fail: The Origins of Power, Prosperity, and Poverty','en',NULL,'/r/Robinson, James A/en/Why nations fail the origins of power, prosperity, and poverty (Daron Acemoglu, James A. Robinson) (en).epub');
@@ -8425,7 +8487,7 @@ INSERT INTO "book_names" VALUES(1811,897,'The King of the Elves','en',NULL,'/d/D
 INSERT INTO "book_names" VALUES(1812,898,'The Man Who Walked Home','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1813,899,'Maneki Neko','en',NULL,'/s/Sterling, Bruce/en/Sterling, Bruce - Maneki Neko.txt');
 INSERT INTO "book_names" VALUES(1814,900,'The Nine Billion Names of God','en',NULL,'/c/Clarke, Arthur C/en/Arthur C Clarke - The Nine Billion Names Of God.txt');
-INSERT INTO "book_names" VALUES(1815,901,'Neighbour','en',NULL,NULL);
+INSERT INTO "book_names" VALUES(1815,901,'Neighbour','en','6477378',NULL);
 INSERT INTO "book_names" VALUES(1816,902,'Occam''s Scalpel','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1817,903,'The Ones Who Walk Away from Omelas','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1818,904,'Passengers','en',NULL,NULL);
@@ -8440,7 +8502,7 @@ INSERT INTO "book_names" VALUES(1826,910,'Robot Dreams','en',NULL,'/a/Asimov, Is
 INSERT INTO "book_names" VALUES(1827,911,'Sandkings','en',NULL,'/m/Martin, George R R/en/George R. R. Martin - The Sandkings.pdf');
 INSERT INTO "book_names" VALUES(1828,912,'The Lifeboat Mutiny','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1829,913,'Quitters, Inc.','en','1646814','/k/King, Stephen/en/Stephen King - Quitters, Inc.pdf');
-INSERT INTO "book_names" VALUES(1830,914,'Operation Stinky','en',NULL,'/s/Simak, Clifford D/en/Clifford D. Simak - Aliens for Neighbors 05 - Operation Stinky.pdf');
+INSERT INTO "book_names" VALUES(1830,914,'Operation Stinky','en','54831999','/s/Simak, Clifford D/en/Clifford D. Simak - Aliens for Neighbors 05 - Operation Stinky.pdf');
 INSERT INTO "book_names" VALUES(1831,915,'A Special Kind of Morning','en',NULL,'/d/Dozois, Gardner/en/Gardner Dozois - A Special Kind of Morning.pdf');
 INSERT INTO "book_names" VALUES(1832,916,'The Temple','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1833,917,'Defense','en',NULL,NULL);
@@ -8448,7 +8510,7 @@ INSERT INTO "book_names" VALUES(1834,918,'Wait It Out','en',NULL,'/n/Niven, Larr
 INSERT INTO "book_names" VALUES(1835,919,'Warrior','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1836,920,'Strange Wine','en',NULL,'/e/Ellison, Harlan/en/Strange Wine by Ellison Harlan (en).epub');
 INSERT INTO "book_names" VALUES(1837,923,'Connections','en',NULL,NULL);
-INSERT INTO "book_names" VALUES(1838,922,'Blit','en',NULL,'/l/Langford, David/en/Lengford_BLIT.31982.fb2.zip');
+INSERT INTO "book_names" VALUES(1838,922,'Blit','en','29192734','/l/Langford, David/en/Lengford_BLIT.31982.fb2.zip');
 INSERT INTO "book_names" VALUES(1839,924,'Kirinyaga','en',NULL,'/r/Resnick, Mike/en/Mike Resnick - Kirinyaga.pdf');
 INSERT INTO "book_names" VALUES(1840,925,'Final Solution','en',NULL,NULL);
 INSERT INTO "book_names" VALUES(1841,926,'Seven Views of Olduvai Gorge','en','18912954','/r/Resnick, Mike/en/Seven Views Of Olduvai Gorge by Resnick Mike (en).epub');
@@ -9110,6 +9172,22 @@ INSERT INTO "book_names" VALUES(2499,241,'Ордер на убийство','ru'
 INSERT INTO "book_names" VALUES(2500,1705,'Noch wach?','de','63217738',NULL);
 INSERT INTO "book_names" VALUES(2501,1706,'Зовнішня історія. Penis. Керівництво з експлуатації','uk','59833860',NULL);
 INSERT INTO "book_names" VALUES(2502,1706,'Penis. En håndbok','no',NULL,NULL);
+INSERT INTO "book_names" VALUES(2503,1707,'OpenAI GPT For Python Developers','en','149051317',NULL);
+INSERT INTO "book_names" VALUES(2504,1708,'Wie künstlich ist Intelligenz - Science-Fiction-Geschichten','de','54239814',NULL);
+INSERT INTO "book_names" VALUES(2505,1709,'Рік розпусти Клауса Отто Баха','uk','56319886',NULL);
+INSERT INTO "book_names" VALUES(2506,1710,'Бухгалтер','uk',NULL,NULL);
+INSERT INTO "book_names" VALUES(2507,1710,'The Accountant','en',NULL,NULL);
+INSERT INTO "book_names" VALUES(2508,638,'Ring Around the Sun','en','191004','');
+INSERT INTO "book_names" VALUES(2509,1711,'Демони','uk',NULL,NULL);
+INSERT INTO "book_names" VALUES(2510,1711,'Demons','en','36152707',NULL);
+INSERT INTO "book_names" VALUES(2511,1712,'Der Kontakt','de','200531644',NULL);
+INSERT INTO "book_names" VALUES(2512,1712,'Lost Contact','en',NULL,NULL);
+INSERT INTO "book_names" VALUES(2513,1713,'Дерево бодхі. Повернення придурків','uk','18755827',NULL);
+INSERT INTO "book_names" VALUES(2514,1714,'Самоубійство','ru',NULL,NULL);
+INSERT INTO "book_names" VALUES(2515,1714,'Le Suicide','fr',NULL,NULL);
+INSERT INTO "book_names" VALUES(2516,1714,'Самогубство: Соціологічне дослідження','uk','17251706','');
+INSERT INTO "book_names" VALUES(2517,1715,'Time Ablaze','en','6297117',NULL);
+INSERT INTO "book_names" VALUES(2518,1716,'Neanderthal','de','34973242',NULL);
 CREATE TABLE "book_readed" (
 	"id"	INTEGER NOT NULL,
 	"book_id"	INTEGER NOT NULL,
@@ -10089,7 +10167,7 @@ INSERT INTO "book_readed" VALUES(965,965,'2009-01-25','ru','ebook',7,'Делен
 INSERT INTO "book_readed" VALUES(966,966,'2009-01-26','ru','ebook',8,'Купец и волшебные врата','');
 INSERT INTO "book_readed" VALUES(967,967,'2009-01-27','ru','ebook',8,'Понимай','');
 INSERT INTO "book_readed" VALUES(968,968,'2009-01-28','ru','ebook',6,'Вавилонская башня','');
-INSERT INTO "book_readed" VALUES(969,1149,'2009-01-29','ru','ebook','','Империя мороженого','');
+INSERT INTO "book_readed" VALUES(969,1149,'2009-01-29','ru','ebook',8,'Империя мороженого','');
 INSERT INTO "book_readed" VALUES(970,970,'2009-01-30','ru','ebook','','Ночь в "Тропиках"','');
 INSERT INTO "book_readed" VALUES(971,971,'2009-01-31','ru','роман',7,'Лавина',NULL);
 INSERT INTO "book_readed" VALUES(972,972,'2009-02-01','ru','роман',NULL,'Криптономикон',NULL);
@@ -10268,7 +10346,7 @@ INSERT INTO "book_readed" VALUES(1145,1145,'2013-01-22','uk','ebook',6,'Холо
 INSERT INTO "book_readed" VALUES(1146,1146,'2013-01-23','uk','ebook',6,'Ніша','');
 INSERT INTO "book_readed" VALUES(1147,1147,'2013-01-24','uk','ebook',7,'Повільне життя','');
 INSERT INTO "book_readed" VALUES(1148,1148,'2013-01-25','uk','ebook',5,'Філософ Паркер Еддерсон','');
-INSERT INTO "book_readed" VALUES(1149,1149,'2013-01-26','uk','оповідіння',8,'Імперія морозива',NULL);
+INSERT INTO "book_readed" VALUES(1149,1149,'2013-01-26','uk','ebook',8,'Імперія морозива','оповідіння');
 INSERT INTO "book_readed" VALUES(1150,1150,'2013-01-27','uk','повість',7,'Джипі і параноїдальний чип',NULL);
 INSERT INTO "book_readed" VALUES(1151,1151,'2013-01-28','uk','ebook',7,'Війна гладіатора. Діалог','');
 INSERT INTO "book_readed" VALUES(1152,1152,'2013-01-29','uk','повість',7,'Лета',NULL);
@@ -10847,14 +10925,24 @@ INSERT INTO "book_readed" VALUES(1739,1277,'2000-03-30','ru','paper',8,NULL,'');
 INSERT INTO "book_readed" VALUES(1740,241,'2000-07-04','ru','paper',6,NULL,'');
 INSERT INTO "book_readed" VALUES(1741,1705,'2024-04-28','de','audiobook',6,NULL,NULL);
 INSERT INTO "book_readed" VALUES(1742,1706,'2024-04-29','uk','audiobook',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1743,1707,'2024-04-30','en','ebook',7,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1744,1708,'2024-04-30','de','tts',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1745,1709,'2024-05-01','uk','tts',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1746,1710,'2024-05-01','uk','audiobook',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1747,1711,'2024-05-02','uk','audiobook',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1748,1712,'2024-05-03','de','audiobook',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1749,1713,'2024-05-04','uk','tts',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1750,1714,'1996-05-04','ru','paper',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1751,1715,'2024-05-06','en','ebook',6,NULL,NULL);
+INSERT INTO "book_readed" VALUES(1752,1716,'2024-05-07','de','tts',7,NULL,NULL);
 CREATE UNIQUE INDEX "book_name_uk" ON "book_names" (
 	"book_id",
 	"lang",
 	"name"
 );
 DELETE FROM "sqlite_sequence";
-INSERT INTO "sqlite_sequence" VALUES('book',1706);
-INSERT INTO "sqlite_sequence" VALUES('author',1836);
-INSERT INTO "sqlite_sequence" VALUES('book_names',2502);
-INSERT INTO "sqlite_sequence" VALUES('book_readed',1742);
+INSERT INTO "sqlite_sequence" VALUES('book',1716);
+INSERT INTO "sqlite_sequence" VALUES('author',1841);
+INSERT INTO "sqlite_sequence" VALUES('book_names',2518);
+INSERT INTO "sqlite_sequence" VALUES('book_readed',1752);
 COMMIT;
